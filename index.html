@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Евгения Анисина — специалист по системному благополучию и просемейный психолог</title>
+    <meta name="description" content="15 лет в доказательной медицине и психологии. Восстановление здоровья, энергии и гармонии в отношениях через медицину, психологию и исследование семейных сценариев.">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Georgia', 'Times New Roman', serif;
+            line-height: 1.7;
+            color: #2c2c2c;
+            background-color: #fafaf7;
+        }
+        
+        /* ШАПКА */
+        header {
+            background-color: #fff;
+            padding: 20px 0;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.08);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        
+        .logo {
+            font-size: 1.1em;
+            font-weight: bold;
+            color: #2c5f2d;
+            letter-spacing: 0.5px;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 25px;
+            list-style: none;
+            flex-wrap: wrap;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-size: 0.95em;
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: #2c5f2d;
+        }
+        
+        .cta-button {
+            background-color: #2c5f2d;
+            color: white !important;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+        
+        .cta-button:hover {
+            background-color: #1e4220;
+        }
+        
+        /* ГЛАВНЫЙ ЭКРАН */
+        .hero {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 100px 20px 80px;
+            text-align: center;
+        }
+        
+        .hero-label {
+            font-size: 0.9em;
+            letter-spacing: 3px;
+            color: #2c5f2d;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+        }
+        
+        .hero h1 {
+            font-size: 3.2em;
+            margin-bottom: 25px;
+            color: #1a1a1a;
+            line-height: 1.2;
+            font-weight: normal;
+        }
+        
+        .hero p {
+            font-size: 1.25em;
+            margin-bottom: 40px;
+            color: #555;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .hero-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .btn-primary {
+            background-color: #2c5f2d;
+            color: white;
+            padding: 15px 35px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 1.05em;
+            transition: background-color 0.3s;
+            display: inline-block;
+        }
+        
+        .btn-primary:hover {
+            background-color: #1e4220;
+        }
+        
+        .btn-secondary {
+            background-color: transparent;
+            color: #2c5f2d;
+            padding: 15px 35px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 1.05em;
+            border: 2px solid #2c5f2d;
+            transition: all 0.3s;
+            display: inline-block;
+        }
+        
+        .btn-secondary:hover {
+            background-color: #2c5f2d;
+            color: white;
+        }
+        
+        /* СЕКЦИИ */
+        section {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 80px 20px;
+        }
+        
+        section h2 {
+            font-size: 2.2em;
+            color: #1a1a1a;
+            margin-bottom: 20px;
+            font-weight: normal;
+        }
+        
+        section .subtitle {
+            font-size: 1.1em;
+            color: #2c5f2d;
+            margin-bottom: 30px;
+            font-style: italic;
+        }
+        
+        section p {
+            font-size: 1.05em;
+            color: #444;
+            margin-bottom: 20px;
+            max-width: 800px;
+        }
+        
+        /* КАРТОЧКИ КОДОВ */
+        .codes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .code-card {
+            background: white;
+            padding: 35px 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+            transition: transform 0.3s, box-shadow 0.3s;
+            border-top: 3px solid #2c5f2d;
+        }
+        
+        .code-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+        }
+        
+        .code-card h3 {
+            font-size: 1.4em;
+            color: #2c5f2d;
+            margin-bottom: 15px;
+            font-weight: normal;
+        }
+        
+        .code-card p {
+            color: #555;
+            font-size: 0.95em;
+            margin-bottom: 20px;
+        }
+        
+        .code-card .price {
+            font-size: 1.1em;
+            color: #1a1a1a;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+        
+        .code-card a {
+            color: #2c5f2d;
+            text-decoration: none;
+            font-weight: bold;
+            border-bottom: 1px solid #2c5f2d;
+            padding-bottom: 2px;
+        }
+        
+        .code-card a:hover {
+            color: #1e4220;
+        }
+        
+        /* ОБО МНЕ */
+        .about {
+            background-color: #f0f4f0;
+            padding: 80px 20px;
+        }
+        
+        .about-content {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        .about h2 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .about p {
+            font-size: 1.1em;
+            color: #444;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .slogan {
+            text-align: center;
+            font-size: 1.5em;
+            color: #2c5f2d;
+            font-style: italic;
+            margin-top: 40px;
+            letter-spacing: 1px;
+        }
+        
+        /* ДИАГНОСТИКА */
+        .diagnostic {
+            background-color: #f0f4f0;
+            text-align: center;
+        }
+        
+        .diagnostic h2 {
+            text-align: center;
+        }
+        
+        .diagnostic p {
+            max-width: 700px;
+            margin: 0 auto 30px;
+            text-align: center;
+        }
+        
+        /* ФУТЕР */
+        footer {
+            background-color: #4a3f5c;
+            color: #e0dce8;
+            padding: 60px 20px 30px;
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-col h4 {
+            color: #fff;
+            font-size: 1.1em;
+            margin-bottom: 20px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            font-weight: normal;
+        }
+        
+        .footer-col p {
+            color: #d0c8dc;
+            font-size: 0.95em;
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+        
+        .footer-col ul {
+            list-style: none;
+        }
+        
+        .footer-col ul li {
+            margin-bottom: 12px;
+        }
+        
+        .footer-col ul li a {
+            color: #d0c8dc;
+            text-decoration: none;
+            font-size: 0.95em;
+            transition: color 0.3s;
+        }
+        
+        .footer-col ul li a:hover {
+            color: #fff;
+        }
+        
+        .footer-col a.email-link {
+            color: #d0c8dc;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 12px;
+            font-size: 0.95em;
+        }
+        
+        .footer-col a.email-link:hover {
+            color: #fff;
+        }
+        
+        .footer-col .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 12px;
+            color: #d0c8dc;
+            font-size: 0.95em;
+        }
+        
+        .footer-cta-btn {
+            display: inline-block;
+            background-color: #6b5b8a;
+            color: white;
+            padding: 14px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-size: 1em;
+            transition: background-color 0.3s;
+            margin-top: 10px;
+            border: 1px solid #8a7aaa;
+        }
+        
+        .footer-cta-btn:hover {
+            background-color: #8a7aaa;
+        }
+        
+        .footer-divider {
+            max-width: 1200px;
+            margin: 0 auto;
+            border: none;
+            border-top: 1px solid #5d4f70;
+            margin-bottom: 25px;
+        }
+        
+        .footer-disclaimer {
+            max-width: 1200px;
+            margin: 0 auto 20px;
+            font-size: 0.85em;
+            color: #a89cb8;
+            line-height: 1.6;
+        }
+        
+        .footer-bottom {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            font-size: 0.85em;
+            color: #a89cb8;
+        }
+        
+        .footer-bottom-links {
+            display: flex;
+            gap: 25px;
+            flex-wrap: wrap;
+        }
+        
+        .footer-bottom-links a {
+            color: #a89cb8;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-bottom-links a:hover {
+            color: #fff;
+        }
+        
+        /* АДАПТИВНОСТЬ */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2em;
+            }
+            
+            .hero p {
+                font-size: 1.05em;
+            }
+            
+            .nav-links {
+                gap: 15px;
+                font-size: 0.9em;
+            }
+            
+            section h2 {
+                font-size: 1.7em;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-bottom {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- ШАПКА -->
+    <header>
+        <nav>
+            <div class="logo">Код Анисиной</div>
+            <ul class="nav-links">
+                <li><a href="#about">Обо мне</a></li>
+                <li><a href="#health">Код здоровья</a></li>
+                <li><a href="#relationships">Код отношений</a></li>
+                <li><a href="#realization">Код реализации</a></li>
+                <li><a href="#family">Код генов</a></li>
+            </ul>
+            <a href="#diagnostic" class="cta-button">Пройти диагностику</a>
+        </nav>
+    </header>
+
+    <!-- ГЛАВНЫЙ ЭКРАН -->
+    <section class="hero">
+        <div class="hero-label">Программы</div>
+        <h1>Лаборатория системного благополучия<br>«Код Анисиной»</h1>
+        <p>Специалист по системному благополучию и просемейный психолог. Помогаю найти системные причины проблем со здоровьем, в отношениях и реализации. Все связано со всем. Благополучие — системно.</p>
+        <div class="hero-buttons">
+            <a href="#diagnostic" class="btn-primary">Пройти диагностику</a>
+            <a href="#codes" class="btn-secondary">Узнать о 4 кодах</a>
+        </div>
+    </section>
+
+    <!-- ОБО МНЕ -->
+    <section class="about" id="about">
+        <div class="about-content">
+            <h2>Обо мне</h2>
+            <p><strong>Евгения Анисина</strong> — специалист по системному благополучию и просемейный психолог. 15 лет в доказательной медицине и психологии.</p>
+            <p>Восстановление здоровья, энергии и гармонии в отношениях через медицину, психологию и исследование семейных сценариев.</p>
+            <p>Моя миссия — помочь вам увидеть глубинные системные связи, которые определяют ваше здоровье, отношения, реализацию и родовую историю. Благополучие системно, как и удача. Исследования показывают, что успешные люди не просто везунчики — они выстроили свою жизнь по определённым законам. Я помогу вам найти ваши личные «коды» благополучия.</p>
+            <div class="slogan">«Моя жизнь. Мои правила.»</div>
+        </div>
+    </section>
+
+    <!-- 4 КОДА -->
+    <section id="codes">
+        <h2>4 кода системного благополучия</h2>
+        <p class="subtitle">Выберите направление, которое откликается вам больше всего</p>
+        
+        <div class="codes-grid">
+            <!-- Код здоровья -->
+            <div class="code-card" id="health">
+                <h3>Код здоровья</h3>
+                <p>Верните себе энергию и жизненную силу через системную работу с телом и психикой.</p>
+                <div class="price">Мастер-группа «Второе дыхание» — 25 000 ₽</div>
+                <p style="font-size: 0.9em; color: #777;">6 недель · 10-12 человек · личное сопровождение</p>
+                <p><a href="#">Подробнее →</a></p>
+            </div>
+
+            <!-- Код отношений -->
+            <div class="code-card" id="relationships">
+                <h3>Код отношений</h3>
+                <p>Постройте гармоничные отношения через понимание системных паттернов.</p>
+                <div class="price">10-дневное сопровождение — 15 000 ₽</div>
+                <p style="font-size: 0.9em; color: #777;">2 встречи + работа между ними</p>
+                <p><a href="#diagnostic">Пройти диагностику →</a></p>
+            </div>
+
+            <!-- Код реализации -->
+            <div class="code-card" id="realization">
+                <h3>Код реализации</h3>
+                <p>Монетизируйте свою экспертизу и создайте устойчивый доход.</p>
+                <div class="price">«Продвижение онлайн под ключ» — 25 000 ₽</div>
+                <p style="font-size: 0.9em; color: #777;">6 недель · сайт · позиционирование</p>
+                <p><a href="#">Подробнее →</a></p>
+            </div>
+
+            <!-- Код генов -->
+            <div class="code-card" id="family">
+                <h3>Код генов</h3>
+                <p>Исцелите родовые сценарии и найдите опору в своей истории.</p>
+                <div class="price">Клуб «Резиденция Анисиной» — 1 000 ₽/мес</div>
+                <p style="font-size: 0.9em; color: #777;">Курс + ежемесячные встречи</p>
+                <p><a href="#">Вступить в клуб →</a></p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ДИАГНОСТИКА -->
+    <section id="diagnostic" class="diagnostic">
+        <h2>Бесплатная диагностика</h2>
+        <p>30 минут, которые помогут понять корень вашей проблемы и выбрать правильный путь работы. Без обязательств и продаж — только ясность.</p>
+        <a href="mailto:info@anisinalab.ru" class="btn-primary">Пройти диагностику</a>
+    </section>
+
+    <!-- ФУТЕР -->
+    <footer>
+        <div class="footer-content">
+            <!-- Колонка 1: О нас -->
+            <div class="footer-col">
+                <h4>Евгения Анисина</h4>
+                <p>Специалист по системному благополучию и просемейный психолог. 15 лет в доказательной медицине и психологии.</p>
+            </div>
+
+            <!-- Колонка 2: Навигация -->
+            <div class="footer-col">
+                <h4>Навигация</h4>
+                <ul>
+                    <li><a href="#codes">Программы</a></li>
+                    <li><a href="#about">Обо мне</a></li>
+                    <li><a href="#health">Код здоровья</a></li>
+                    <li><a href="#relationships">Код отношений</a></li>
+                    <li><a href="#realization">Код реализации</a></li>
+                    <li><a href="#family">Код генов</a></li>
+                </ul>
+            </div>
+
+            <!-- Колонка 3: Контакты -->
+            <div class="footer-col">
+                <h4>Контакты</h4>
+                <a href="mailto:info@anisinalab.ru" class="email-link">
+                    ✉ info@anisinalab.ru
+                </a>
+                <div class="contact-item">
+                    🌐 Лаборатория «Код Анисиной»
+                </div>
+            </div>
+
+            <!-- Колонка 4: Начните сейчас -->
+            <div class="footer-col">
+                <h4>Начните сейчас</h4>
+                <p>Пройдите диагностику и получите персональные рекомендации</p>
+                <a href="#diagnostic" class="footer-cta-btn">Пройти диагностику</a>
+            </div>
+        </div>
+
+        <hr class="footer-divider">
+
+        <!-- Дисклеймер -->
+        <div class="footer-disclaimer">
+            Информация на сайте и в программах Евгении Анисиной носит образовательный характер и не является медицинской услугой, постановкой диагноза или назначением лечения. Она не заменяет консультацию врача. Программы работают с образом жизни — питанием, сном, движением и восстановлением — и не предполагают отмены или изменения назначенных врачом препаратов. При наличии заболеваний, а также перед изменением питания или приёмом добавок проконсультируйтесь со своим лечащим врачом.
+        </div>
+
+        <!-- Нижняя часть футера -->
+        <div class="footer-bottom">
+            <div>
+                © 2026 Евгения Анисина. Все права защищены.
+            </div>
+            <div class="footer-bottom-links">
+                <a href="#">Политика конфиденциальности</a>
+                <a href="#">Оферта</a>
+                <a href="#">Согласие на обработку персональных данных</a>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
