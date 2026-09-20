@@ -78,12 +78,40 @@
             background-color: #1e4220;
         }
         
-        /* ГЛАВНЫЙ ЭКРАН */
+        /* ГЛАВНЫЙ ЭКРАН С ФОТО */
         .hero {
-            max-width: 900px;
+            max-width: 1200px;
             margin: 0 auto;
-            padding: 100px 20px 80px;
-            text-align: center;
+            padding: 80px 20px;
+            display: flex;
+            align-items: center;
+            gap: 60px;
+        }
+        
+        .hero-text {
+            flex: 1;
+            min-width: 0;
+        }
+        
+        .hero-photo {
+            flex: 0 0 380px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .hero-photo img {
+            width: 380px;
+            height: 380px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid #2c5f2d;
+            box-shadow: 0 10px 40px rgba(44, 95, 45, 0.25);
+            transition: transform 0.4s ease;
+        }
+        
+        .hero-photo img:hover {
+            transform: scale(1.03);
         }
         
         .hero-label {
@@ -95,7 +123,7 @@
         }
         
         .hero h1 {
-            font-size: 3.2em;
+            font-size: 2.8em;
             margin-bottom: 25px;
             color: #1a1a1a;
             line-height: 1.2;
@@ -103,18 +131,15 @@
         }
         
         .hero p {
-            font-size: 1.25em;
-            margin-bottom: 40px;
+            font-size: 1.15em;
+            margin-bottom: 35px;
             color: #555;
-            max-width: 700px;
-            margin-left: auto;
-            margin-right: auto;
+            max-width: 600px;
         }
         
         .hero-buttons {
             display: flex;
             gap: 20px;
-            justify-content: center;
             flex-wrap: wrap;
         }
         
@@ -178,7 +203,7 @@
             max-width: 800px;
         }
         
-        /* ОБО МНЕ С ФОТО */
+        /* ОБО МНЕ (БЕЗ ФОТО) */
         .about {
             background-color: #f0f4f0;
             padding: 80px 20px;
@@ -191,18 +216,7 @@
         
         .about h2 {
             text-align: center;
-            margin-bottom: 40px;
-        }
-        
-        .about-photo {
-            width: 250px;
-            height: 250px;
-            border-radius: 50%;
-            object-fit: cover;
-            margin: 0 auto 30px;
-            display: block;
-            border: 4px solid #2c5f2d;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
         }
         
         .about p {
@@ -458,13 +472,44 @@
         }
         
         /* АДАПТИВНОСТЬ */
-        @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 2em;
+        @media (max-width: 900px) {
+            .hero {
+                flex-direction: column-reverse;
+                text-align: center;
+                gap: 40px;
+                padding: 60px 20px;
+            }
+            
+            .hero-photo {
+                flex: 0 0 auto;
+            }
+            
+            .hero-photo img {
+                width: 280px;
+                height: 280px;
             }
             
             .hero p {
-                font-size: 1.05em;
+                margin-left: auto;
+                margin-right: auto;
+            }
+            
+            .hero-buttons {
+                justify-content: center;
+            }
+            
+            .hero h1 {
+                font-size: 2.2em;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 1.9em;
+            }
+            
+            .hero p {
+                font-size: 1em;
             }
             
             .nav-links {
@@ -478,11 +523,6 @@
             
             .codes-grid {
                 grid-template-columns: 1fr;
-            }
-            
-            .about-photo {
-                width: 200px;
-                height: 200px;
             }
             
             .footer-content {
@@ -512,25 +552,26 @@
         </nav>
     </header>
 
-    <!-- ГЛАВНЫЙ ЭКРАН -->
+    <!-- ГЛАВНЫЙ ЭКРАН С ФОТО -->
     <section class="hero">
-        <div class="hero-label">Программы</div>
-        <h1>Лаборатория системного благополучия<br>«Код Анисиной»</h1>
-        <p>Специалист по системному благополучию и просемейный психолог. Помогаю найти системные причины проблем со здоровьем, в отношениях и реализации. Все связано со всем. Благополучие — системно.</p>
-        <div class="hero-buttons">
-            <a href="#diagnostic" class="btn-primary">Пройти диагностику</a>
-            <a href="#codes" class="btn-secondary">Узнать о 4 кодах</a>
+        <div class="hero-text">
+            <div class="hero-label">Программы</div>
+            <h1>Лаборатория системного благополучия<br>«Код Анисиной»</h1>
+            <p>Специалист по системному благополучию и просемейный психолог. Помогаю найти системные причины проблем со здоровьем, в отношениях и реализации. Все связано со всем. Благополучие — системно.</p>
+            <div class="hero-buttons">
+                <a href="#diagnostic" class="btn-primary">Пройти диагностику</a>
+                <a href="#codes" class="btn-secondary">Узнать о 4 кодах</a>
+            </div>
+        </div>
+        <div class="hero-photo">
+            <img src="photo.jpg" alt="Евгения Анисина" onerror="this.style.display='none'">
         </div>
     </section>
 
-    <!-- ОБО МНЕ С ФОТО -->
+    <!-- ОБО МНЕ (БЕЗ ФОТО) -->
     <section class="about" id="about">
         <div class="about-content">
             <h2>Обо мне</h2>
-            
-            <!-- ФОТО: замените 'photo.jpg' на имя вашего файла после загрузки -->
-            <img src="photo.jpg" alt="Евгения Анисина" class="about-photo" onerror="this.style.display='none'">
-            
             <p><strong>Евгения Анисина</strong> — специалист по системному благополучию и просемейный психолог. 15 лет в доказательной медицине и психологии.</p>
             <p>Восстановление здоровья, энергии и гармонии в отношениях через медицину, психологию и исследование семейных сценариев.</p>
             <p>Моя миссия — помочь вам увидеть глубинные системные связи, которые определяют ваше здоровье, отношения, реализацию и родовую историю. Благополучие системно, как и удача. Исследования показывают, что успешные люди не просто везунчики — они выстроили свою жизнь по определённым законам. Я помогу вам найти ваши личные «коды» благополучия.</p>
