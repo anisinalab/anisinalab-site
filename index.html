@@ -178,10 +178,53 @@
             max-width: 800px;
         }
         
-        /* КАРТОЧКИ КОДОВ */
+        /* ОБО МНЕ С ФОТО */
+        .about {
+            background-color: #f0f4f0;
+            padding: 80px 20px;
+        }
+        
+        .about-content {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        .about h2 {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .about-photo {
+            width: 250px;
+            height: 250px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin: 0 auto 30px;
+            display: block;
+            border: 4px solid #2c5f2d;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+        
+        .about p {
+            font-size: 1.1em;
+            color: #444;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .slogan {
+            text-align: center;
+            font-size: 1.5em;
+            color: #2c5f2d;
+            font-style: italic;
+            margin-top: 40px;
+            letter-spacing: 1px;
+        }
+        
+        /* КАРТОЧКИ КОДОВ - 2 В РЯД */
         .codes-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            grid-template-columns: repeat(2, 1fr);
             gap: 30px;
             margin-top: 40px;
         }
@@ -213,10 +256,16 @@
             margin-bottom: 20px;
         }
         
-        .code-card .price {
-            font-size: 1.1em;
+        .code-card .product-name {
+            font-size: 1.05em;
             color: #1a1a1a;
             font-weight: bold;
+            margin-bottom: 15px;
+        }
+        
+        .code-card .details {
+            font-size: 0.9em;
+            color: #777;
             margin-bottom: 20px;
         }
         
@@ -230,38 +279,6 @@
         
         .code-card a:hover {
             color: #1e4220;
-        }
-        
-        /* ОБО МНЕ */
-        .about {
-            background-color: #f0f4f0;
-            padding: 80px 20px;
-        }
-        
-        .about-content {
-            max-width: 900px;
-            margin: 0 auto;
-        }
-        
-        .about h2 {
-            text-align: center;
-            margin-bottom: 30px;
-        }
-        
-        .about p {
-            font-size: 1.1em;
-            color: #444;
-            margin-bottom: 20px;
-            text-align: center;
-        }
-        
-        .slogan {
-            text-align: center;
-            font-size: 1.5em;
-            color: #2c5f2d;
-            font-style: italic;
-            margin-top: 40px;
-            letter-spacing: 1px;
         }
         
         /* ДИАГНОСТИКА */
@@ -278,6 +295,31 @@
             max-width: 700px;
             margin: 0 auto 30px;
             text-align: center;
+        }
+        
+        /* БЕГУЩАЯ СТРОКА */
+        .marquee-container {
+            background-color: #2c5f2d;
+            color: white;
+            padding: 15px 0;
+            overflow: hidden;
+            white-space: nowrap;
+        }
+        
+        .marquee-content {
+            display: inline-block;
+            animation: marquee 25s linear infinite;
+            font-size: 1.05em;
+            letter-spacing: 1px;
+        }
+        
+        @keyframes marquee {
+            0% {
+                transform: translateX(100vw);
+            }
+            100% {
+                transform: translateX(-100%);
+            }
         }
         
         /* ФУТЕР */
@@ -434,6 +476,15 @@
                 font-size: 1.7em;
             }
             
+            .codes-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .about-photo {
+                width: 200px;
+                height: 200px;
+            }
+            
             .footer-content {
                 grid-template-columns: 1fr;
             }
@@ -472,10 +523,14 @@
         </div>
     </section>
 
-    <!-- ОБО МНЕ -->
+    <!-- ОБО МНЕ С ФОТО -->
     <section class="about" id="about">
         <div class="about-content">
             <h2>Обо мне</h2>
+            
+            <!-- ФОТО: замените 'photo.jpg' на имя вашего файла после загрузки -->
+            <img src="photo.jpg" alt="Евгения Анисина" class="about-photo" onerror="this.style.display='none'">
+            
             <p><strong>Евгения Анисина</strong> — специалист по системному благополучию и просемейный психолог. 15 лет в доказательной медицине и психологии.</p>
             <p>Восстановление здоровья, энергии и гармонии в отношениях через медицину, психологию и исследование семейных сценариев.</p>
             <p>Моя миссия — помочь вам увидеть глубинные системные связи, которые определяют ваше здоровье, отношения, реализацию и родовую историю. Благополучие системно, как и удача. Исследования показывают, что успешные люди не просто везунчики — они выстроили свою жизнь по определённым законам. Я помогу вам найти ваши личные «коды» благополучия.</p>
@@ -483,7 +538,7 @@
         </div>
     </section>
 
-    <!-- 4 КОДА -->
+    <!-- 4 КОДА (2 В РЯД, БЕЗ ЦЕН) -->
     <section id="codes">
         <h2>4 кода системного благополучия</h2>
         <p class="subtitle">Выберите направление, которое откликается вам больше всего</p>
@@ -493,8 +548,8 @@
             <div class="code-card" id="health">
                 <h3>Код здоровья</h3>
                 <p>Верните себе энергию и жизненную силу через системную работу с телом и психикой.</p>
-                <div class="price">Мастер-группа «Второе дыхание» — 25 000 ₽</div>
-                <p style="font-size: 0.9em; color: #777;">6 недель · 10-12 человек · личное сопровождение</p>
+                <div class="product-name">Мастер-группа «Второе дыхание»</div>
+                <div class="details">6 недель · 10-12 человек · личное сопровождение</div>
                 <p><a href="#">Подробнее →</a></p>
             </div>
 
@@ -502,8 +557,8 @@
             <div class="code-card" id="relationships">
                 <h3>Код отношений</h3>
                 <p>Постройте гармоничные отношения через понимание системных паттернов.</p>
-                <div class="price">10-дневное сопровождение — 15 000 ₽</div>
-                <p style="font-size: 0.9em; color: #777;">2 встречи + работа между ними</p>
+                <div class="product-name">10-дневное сопровождение</div>
+                <div class="details">2 встречи + работа между ними</div>
                 <p><a href="#diagnostic">Пройти диагностику →</a></p>
             </div>
 
@@ -511,8 +566,8 @@
             <div class="code-card" id="realization">
                 <h3>Код реализации</h3>
                 <p>Монетизируйте свою экспертизу и создайте устойчивый доход.</p>
-                <div class="price">«Продвижение онлайн под ключ» — 25 000 ₽</div>
-                <p style="font-size: 0.9em; color: #777;">6 недель · сайт · позиционирование</p>
+                <div class="product-name">«Продвижение онлайн под ключ»</div>
+                <div class="details">6 недель · сайт · позиционирование</div>
                 <p><a href="#">Подробнее →</a></p>
             </div>
 
@@ -520,8 +575,8 @@
             <div class="code-card" id="family">
                 <h3>Код генов</h3>
                 <p>Исцелите родовые сценарии и найдите опору в своей истории.</p>
-                <div class="price">Клуб «Резиденция Анисиной» — 1 000 ₽/мес</div>
-                <p style="font-size: 0.9em; color: #777;">Курс + ежемесячные встречи</p>
+                <div class="product-name">Клуб «Резиденция Анисиной»</div>
+                <div class="details">Курс + ежемесячные встречи</div>
                 <p><a href="#">Вступить в клуб →</a></p>
             </div>
         </div>
@@ -534,16 +589,21 @@
         <a href="mailto:info@anisinalab.ru" class="btn-primary">Пройти диагностику</a>
     </section>
 
+    <!-- БЕГУЩАЯ СТРОКА -->
+    <div class="marquee-container">
+        <div class="marquee-content">
+            Лаборатория системного благополучия "Код Анисиной" &nbsp;&nbsp;|&nbsp;&nbsp; Код здоровья &nbsp;&nbsp;|&nbsp;&nbsp; Код отношений &nbsp;&nbsp;|&nbsp;&nbsp; Код реализации &nbsp;&nbsp;|&nbsp;&nbsp; Код генов &nbsp;&nbsp;|&nbsp;&nbsp; Лаборатория системного благополучия "Код Анисиной" &nbsp;&nbsp;|&nbsp;&nbsp; Код здоровья &nbsp;&nbsp;|&nbsp;&nbsp; Код отношений &nbsp;&nbsp;|&nbsp;&nbsp; Код реализации &nbsp;&nbsp;|&nbsp;&nbsp; Код генов
+        </div>
+    </div>
+
     <!-- ФУТЕР -->
     <footer>
         <div class="footer-content">
-            <!-- Колонка 1: О нас -->
             <div class="footer-col">
                 <h4>Евгения Анисина</h4>
                 <p>Специалист по системному благополучию и просемейный психолог. 15 лет в доказательной медицине и психологии.</p>
             </div>
 
-            <!-- Колонка 2: Навигация -->
             <div class="footer-col">
                 <h4>Навигация</h4>
                 <ul>
@@ -556,7 +616,6 @@
                 </ul>
             </div>
 
-            <!-- Колонка 3: Контакты -->
             <div class="footer-col">
                 <h4>Контакты</h4>
                 <a href="mailto:info@anisinalab.ru" class="email-link">
@@ -567,7 +626,6 @@
                 </div>
             </div>
 
-            <!-- Колонка 4: Начните сейчас -->
             <div class="footer-col">
                 <h4>Начните сейчас</h4>
                 <p>Пройдите диагностику и получите персональные рекомендации</p>
@@ -577,12 +635,10 @@
 
         <hr class="footer-divider">
 
-        <!-- Дисклеймер -->
         <div class="footer-disclaimer">
             Информация на сайте и в программах Евгении Анисиной носит образовательный характер и не является медицинской услугой, постановкой диагноза или назначением лечения. Она не заменяет консультацию врача. Программы работают с образом жизни — питанием, сном, движением и восстановлением — и не предполагают отмены или изменения назначенных врачом препаратов. При наличии заболеваний, а также перед изменением питания или приёмом добавок проконсультируйтесь со своим лечащим врачом.
         </div>
 
-        <!-- Нижняя часть футера -->
         <div class="footer-bottom">
             <div>
                 © 2026 Евгения Анисина. Все права защищены.
