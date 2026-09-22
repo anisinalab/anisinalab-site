@@ -1,0 +1,778 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Код реализации | Лаборатория системного благополучия «Код Анисиной»</title>
+    <meta name="description" content="Код реализации: страница в разработке. Подпишитесь на канал лаборатории «Код Анисиной» в Телеграм.">
+    <meta name="robots" content="noindex">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Georgia', 'Times New Roman', serif;
+            line-height: 1.7;
+            color: #2c2c2c;
+            background-color: #E8F5E9;
+            overflow-x: hidden;
+        }
+        
+        /* ШАПКА - ЛИЛОВАЯ */
+        header {
+            background-color: #B8A9C9;
+            padding: 20px 0;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        
+        .logo {
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #fff;
+            letter-spacing: 0.5px;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 25px;
+            list-style: none;
+            flex-wrap: wrap;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: #fff;
+            font-size: 0.95em;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: #f0e6ff;
+        }
+        
+        .cta-button {
+            background-color: #fff;
+            color: #B8A9C9 !important;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+        
+        .cta-button:hover {
+            background-color: #f0e6ff;
+        }
+        
+        /* SCROLL ANIMATIONS */
+        .scroll-reveal {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s ease-out;
+        }
+        
+        .scroll-reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .scroll-reveal-left {
+            opacity: 0;
+            transform: translateX(-50px);
+            transition: all 0.8s ease-out;
+        }
+        
+        .scroll-reveal-left.active {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        
+        .scroll-reveal-right {
+            opacity: 0;
+            transform: translateX(50px);
+            transition: all 0.8s ease-out;
+        }
+        
+        .scroll-reveal-right.active {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        
+        .scroll-reveal-scale {
+            opacity: 0;
+            transform: scale(0.8);
+            transition: all 0.8s ease-out;
+        }
+        
+        .scroll-reveal-scale.active {
+            opacity: 1;
+            transform: scale(1);
+        }
+        
+        /* ГЛАВНЫЙ ЭКРАН С ФОТО */
+        .hero {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 80px 20px;
+            display: flex;
+            align-items: center;
+            gap: 60px;
+        }
+        
+        .hero-text {
+            flex: 1;
+            min-width: 0;
+        }
+        
+        .hero-photo {
+            flex: 0 0 400px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .hero-photo img {
+            max-width: 100%;
+            max-height: 500px;
+            width: auto;
+            height: auto;
+            border-radius: 12px;
+            object-fit: contain;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.12);
+            transition: transform 0.4s ease;
+            background-color: #fff;
+        }
+        
+        .hero-photo img:hover {
+            transform: scale(1.02);
+        }
+
+        /* появление фото без зависимости от скрипта прокрутки */
+        .hero-photo img {
+            animation: heroPhotoIn 0.9s ease-out backwards;
+        }
+
+        @keyframes heroPhotoIn {
+            from { opacity: 0; transform: translateX(50px); }
+            to { opacity: 1; transform: none; }
+        }
+
+        .hero-photo.photo-missing {
+            display: none;
+        }
+        
+        .hero h1 {
+            font-size: 2.8em;
+            margin-bottom: 25px;
+            color: #1a1a1a;
+            line-height: 1.2;
+            font-weight: normal;
+        }
+        
+        .hero p {
+            font-size: 1.15em;
+            margin-bottom: 35px;
+            color: #555;
+            max-width: 600px;
+        }
+        
+        .hero-buttons {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .btn-primary {
+            background-color: #2c5f2d;
+            color: white;
+            padding: 15px 35px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 1.05em;
+            transition: background-color 0.3s;
+            display: inline-block;
+        }
+        
+        .btn-primary:hover {
+            background-color: #1e4220;
+        }
+        
+        .btn-secondary {
+            background-color: transparent;
+            color: #2c5f2d;
+            padding: 15px 35px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 1.05em;
+            border: 2px solid #2c5f2d;
+            transition: all 0.3s;
+            display: inline-block;
+        }
+        
+        .btn-secondary:hover {
+            background-color: #2c5f2d;
+            color: white;
+        }
+        
+        /* СЕКЦИИ */
+        section {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 80px 20px;
+        }
+        
+        section h2 {
+            font-size: 2.2em;
+            color: #1a1a1a;
+            margin-bottom: 20px;
+            font-weight: normal;
+        }
+        
+        section .subtitle {
+            font-size: 1.1em;
+            color: #2c5f2d;
+            margin-bottom: 30px;
+            font-style: italic;
+        }
+        
+        section p {
+            font-size: 1.05em;
+            color: #444;
+            margin-bottom: 20px;
+            max-width: 800px;
+        }
+        
+        /* ОБО МНЕ */
+        .about {
+            background-color: #F0F7F0;
+            padding: 80px 20px;
+        }
+        
+        .about-content {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        .about h2 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .about p {
+            font-size: 1.1em;
+            color: #444;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .slogan {
+            text-align: center;
+            font-size: 1.5em;
+            color: #2c5f2d;
+            font-style: italic;
+            margin-top: 40px;
+            letter-spacing: 1px;
+        }
+        
+        /* КАРТОЧКИ КОДОВ - 2 В РЯД */
+        .codes-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .code-card {
+            background: white;
+            padding: 35px 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+            transition: transform 0.3s, box-shadow 0.3s;
+            border-top: 3px solid #B8A9C9;
+        }
+        
+        .code-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+        }
+        
+        .code-card h3 {
+            font-size: 1.4em;
+            color: #7B5C99;
+            margin-bottom: 15px;
+            font-weight: normal;
+        }
+        
+        .code-card p {
+            color: #555;
+            font-size: 0.95em;
+            margin-bottom: 20px;
+        }
+        
+        .code-card .product-name {
+            font-size: 1.05em;
+            color: #1a1a1a;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+        
+        .code-card .details {
+            font-size: 0.9em;
+            color: #777;
+            margin-bottom: 20px;
+        }
+        
+        .code-card a {
+            color: #7B5C99;
+            text-decoration: none;
+            font-weight: bold;
+            border-bottom: 1px solid #7B5C99;
+            padding-bottom: 2px;
+        }
+        
+        .code-card a:hover {
+            color: #5E4477;
+            border-bottom-color: #5E4477;
+        }
+
+        .code-card p.club-notice {
+            background: #F3EFF8;
+            border-left: 3px solid #7B5C99;
+            border-radius: 6px;
+            padding: 12px 14px;
+            color: #444;
+            font-size: 0.92em;
+        }
+        
+        /* ДИАГНОСТИКА */
+        .diagnostic {
+            background-color: #F0F7F0;
+            text-align: center;
+        }
+        
+        .diagnostic h2 {
+            text-align: center;
+        }
+        
+        .diagnostic p {
+            max-width: 700px;
+            margin: 0 auto 30px;
+            text-align: center;
+        }
+        
+        /* БЕГУЩАЯ СТРОКА */
+        .marquee-container {
+            background-color: #B8A9C9;
+            color: white;
+            padding: 15px 0;
+            overflow: hidden;
+            white-space: nowrap;
+        }
+        
+        .marquee-content {
+            display: inline-block;
+            animation: marquee 25s linear infinite;
+            font-size: 1.05em;
+            letter-spacing: 1px;
+        }
+        
+        @keyframes marquee {
+            0% {
+                transform: translateX(100vw);
+            }
+            100% {
+                transform: translateX(-100%);
+            }
+        }
+        
+        /* ФУТЕР - ЛИЛОВЫЙ */
+        footer {
+            background-color: #B8A9C9;
+            color: #fff;
+            padding: 60px 20px 30px;
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-col h4 {
+            color: #fff;
+            font-size: 1.1em;
+            margin-bottom: 20px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            font-weight: normal;
+        }
+        
+        .footer-col p {
+            color: #f0e6ff;
+            font-size: 0.95em;
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+        
+        .footer-col ul {
+            list-style: none;
+        }
+        
+        .footer-col ul li {
+            margin-bottom: 12px;
+        }
+        
+        .footer-col ul li a {
+            color: #f0e6ff;
+            text-decoration: none;
+            font-size: 0.95em;
+            transition: color 0.3s;
+        }
+        
+        .footer-col ul li a:hover {
+            color: #fff;
+        }
+        
+        .footer-col a.email-link {
+            color: #f0e6ff;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 12px;
+            font-size: 0.95em;
+        }
+        
+        .footer-col a.email-link:hover {
+            color: #fff;
+        }
+        
+        .footer-col .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 12px;
+            color: #f0e6ff;
+            font-size: 0.95em;
+        }
+        
+        .footer-cta-btn {
+            display: inline-block;
+            background-color: #fff;
+            color: #B8A9C9;
+            padding: 15px 35px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 1em;
+            transition: background-color 0.3s;
+            margin-top: 10px;
+            border: 1px solid #fff;
+        }
+        
+        .footer-cta-btn:hover {
+            background-color: #f0e6ff;
+        }
+        
+        .footer-divider {
+            max-width: 1200px;
+            margin: 0 auto;
+            border: none;
+            border-top: 1px solid rgba(255,255,255,0.3);
+            margin-bottom: 25px;
+        }
+        
+        .footer-disclaimer {
+            max-width: 1200px;
+            margin: 0 auto 20px;
+            font-size: 0.85em;
+            color: #f0e6ff;
+            line-height: 1.6;
+        }
+        
+        .footer-bottom {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            font-size: 0.85em;
+            color: #f0e6ff;
+        }
+        
+        .footer-bottom-links {
+            display: flex;
+            gap: 25px;
+            flex-wrap: wrap;
+        }
+        
+        .footer-bottom-links a {
+            color: #f0e6ff;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-bottom-links a:hover {
+            color: #fff;
+        }
+        
+        /* АДАПТИВНОСТЬ */
+        @media (max-width: 900px) {
+            .hero {
+                flex-direction: column;
+                text-align: center;
+                gap: 40px;
+                padding: 60px 20px;
+            }
+            
+            .hero-photo {
+                flex: 0 0 auto;
+                order: -1;
+            }
+            
+            .hero-photo img {
+                max-width: 300px;
+                max-height: 400px;
+            }
+            
+            .hero p {
+                margin-left: auto;
+                margin-right: auto;
+            }
+            
+            .hero-buttons {
+                justify-content: center;
+            }
+            
+            .hero h1 {
+                font-size: 2.2em;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 1.9em;
+            }
+            
+            .hero p {
+                font-size: 1em;
+            }
+            
+            .nav-links {
+                gap: 15px;
+                font-size: 0.9em;
+            }
+            
+            section h2 {
+                font-size: 1.7em;
+            }
+            
+            .codes-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-bottom {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+
+        .nb { white-space: nowrap; }
+        .brand, .keep { display: inline-block; max-width: 100%; }
+
+        .btn-tg { display: inline-flex; align-items: center; gap: 10px; }
+        .btn-tg svg { flex: none; }
+
+        .footer-buttons { display: flex; flex-direction: column; align-items: flex-start; gap: 12px; margin-top: 10px; }
+        .footer-buttons .footer-cta-btn { margin-top: 0; }
+
+        .code-card p.card-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px 24px;
+        }
+
+
+        .dev-page { text-align: center; padding: 100px 20px 120px; }
+        .dev-page h1 { font-size: 2.4em; font-weight: normal; color: #1a1a1a; margin-bottom: 30px; line-height: 1.2; }
+        .dev-page p { margin: 0 auto 24px; max-width: 720px; font-size: 1.1em; color: #444; }
+        .dev-buttons { display: flex; flex-wrap: wrap; justify-content: center; gap: 16px 20px; margin-top: 10px; }
+        .dev-page p.back { margin-top: 40px; font-size: 0.95em; }
+        .dev-page p.back a { color: #7B5C99; text-decoration: none; border-bottom: 1px solid #7B5C99; }
+        .dev-page p.back a:hover { color: #5E4477; border-bottom-color: #5E4477; }
+        @media (max-width: 768px) { .dev-page { padding: 70px 20px 80px; } .dev-page h1 { font-size: 1.9em; } }
+    </style>
+    <!-- Yandex.Metrika counter -->
+    <script type="text/javascript">
+        (function(m,e,t,r,i,k,a){
+            m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+            m[i].l=1*new Date();
+            for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+            k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+        })(window, document, "script", "https://mc.yandex.ru/metrika/tag.js?id=112880124", "ym");
+
+        ym(112880124, "init", {
+            ssr: true,
+            clickmap: true,
+            referrer: document.referrer,
+            url: location.href,
+            accurateTrackBounce: true,
+            trackLinks: true
+        });
+    </script>
+    <!-- /Yandex.Metrika counter -->
+</head>
+<body>
+    <noscript><div><img src="https://mc.yandex.ru/watch/112880124" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+
+    <header>
+        <nav>
+            <div class="logo"><a href="index.html" style="color:inherit;text-decoration:none">Код Анисиной</a></div>
+            <ul class="nav-links">
+                <li><a href="index.html#about">Обо мне</a></li>
+                <li><a href="index.html#health">Код здоровья</a></li>
+                <li><a href="index.html#relationships">Код отношений</a></li>
+                <li><a href="index.html#realization">Код реализации</a></li>
+                <li><a href="index.html#family">Код семьи и рода</a></li>
+            </ul>
+            <a href="index.html?quiz=1#diagnostic" class="cta-button">Пройти диагностику</a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="dev-page">
+            <h1>Код реализации</h1>
+            <p>Находится в разработке.</p>
+            <p>Скоро здесь появится актуальная информация о текущих программах и проектах.</p>
+            <p>А пока вы можете подписаться на канал <span class="brand">Лаборатория системного благополучия «Код&nbsp;Анисиной»</span>, где каждую пятницу идут еженедельные прямые эфиры и найдётся много интересного. Или пройти диагностику – нажимайте на кнопку ниже.</p>
+            <div class="dev-buttons">
+                <a href="index.html?quiz=1#diagnostic" class="btn-primary">Пройти диагностику</a>
+                <a href="https://t.me/anisinalab" class="btn-secondary btn-tg" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg> Перейти в Телеграм-канал</a>
+            </div>
+            <p class="back"><a href="index.html#codes">← Ко всем кодам</a></p>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-col scroll-reveal-left">
+                <h4>Евгения Анисина</h4>
+                <p>Специалист по системному благополучию и просемейный психолог.<br><span class="keep">15&nbsp;лет в доказательной медицине и психологии.</span></p>
+            </div>
+
+            <div class="footer-col scroll-reveal">
+                <h4>Навигация</h4>
+                <ul>
+                    <li><a href="index.html#codes">Программы</a></li>
+                    <li><a href="index.html#about">Обо мне</a></li>
+                    <li><a href="index.html#health">Код здоровья</a></li>
+                    <li><a href="index.html#relationships">Код отношений</a></li>
+                    <li><a href="index.html#realization">Код реализации</a></li>
+                    <li><a href="index.html#family">Код семьи и рода</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col scroll-reveal">
+                <h4>Контакты</h4>
+                <a href="mailto:info@anisinalab.ru" class="email-link">✉ info@anisinalab.ru</a>
+                <div class="contact-item"><span>🌐</span> <span class="brand">Лаборатория системного благополучия «Код&nbsp;Анисиной»</span></div>
+            </div>
+
+            <div class="footer-col scroll-reveal-right">
+                <h4>Начните сейчас</h4>
+                <p>Пройдите диагностику и получите персональные рекомендации</p>
+                <div class="footer-buttons">
+                    <a href="index.html?quiz=1#diagnostic" class="footer-cta-btn">Пройти диагностику</a>
+                    <a href="https://t.me/anisinalab" class="footer-cta-btn btn-tg" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg> Перейти в Телеграм-канал</a>
+                </div>
+            </div>
+        </div>
+
+        <hr class="footer-divider">
+
+        <div class="footer-disclaimer">
+            Информация на сайте и в программах Евгении Анисиной носит образовательный характер и не является медицинской услугой, постановкой диагноза или назначением лечения. Она не заменяет консультацию врача. Программы работают с образом жизни – питанием, сном, движением и восстановлением – и не предполагают отмены или изменения назначенных врачом препаратов. При наличии заболеваний, а также перед изменением питания или приёмом добавок проконсультируйтесь со своим лечащим врачом.
+        </div>
+
+        <div class="footer-disclaimer">
+            Продавец: самозанятая <span class="keep">Хомич Евгения Юрьевна</span>, <span class="nb">ИНН&nbsp;471704604510</span> (плательщик налога на профессиональный доход). Контакты: <a href="mailto:info@anisinalab.ru" style="color: inherit;">info@anisinalab.ru</a>
+        </div>
+
+        <div class="footer-bottom">
+            <div>© 2026 Евгения Анисина. Все права защищены.</div>
+            <div class="footer-bottom-links">
+                <a href="#">Политика конфиденциальности</a>
+                <a href="#">Оферта</a>
+                <a href="#">Согласие на обработку персональных данных</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="site-config.js"></script>
+    <script>
+        // Функция для отслеживания появления элементов при скролле
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, observerOptions);
+
+        // Наблюдаем за всеми элементами с классом scroll-reveal
+        document.querySelectorAll('.scroll-reveal, .scroll-reveal-left, .scroll-reveal-right, .scroll-reveal-scale').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Плавная прокрутка для якорных ссылок
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const id = this.getAttribute('href');
+                if (id.length < 2) {
+                    e.preventDefault();
+                    return;
+                }
+                const target = document.querySelector(id);
+                if (target) {
+                    e.preventDefault();
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
