@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Код реализации | Лаборатория системного благополучия «Код Анисиной»</title>
-    <meta name="description" content="Код реализации: страница в разработке. Подпишитесь на канал лаборатории «Код Анисиной» в Телеграм.">
+    <meta name="description" content="Транскрибатор: программа для расшифровки аудио и видео в текст, без ограничений по времени и без выгрузки в интернет.">
     <meta name="robots" content="noindex">
     <style>
         * {
@@ -627,6 +627,25 @@
         .dev-page p.back a { color: #7B5C99; text-decoration: none; border-bottom: 1px solid #7B5C99; }
         .dev-page p.back a:hover { color: #5E4477; border-bottom-color: #5E4477; }
         @media (max-width: 768px) { .dev-page { padding: 70px 20px 80px; } .dev-page h1 { font-size: 1.9em; } }
+
+        .transcriber-intro p { margin: 0 0 18px; max-width: 720px; text-align: left; }
+        .transcriber-lists { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; margin: 30px 0 34px; text-align: left; }
+        .transcriber-lists h3 { font-size: 1.15em; font-weight: bold; color: #1a1a1a; margin-bottom: 14px; }
+        .transcriber-lists ul { list-style: none; padding: 0; margin: 0; display: grid; gap: 10px; }
+        .transcriber-lists li { display: flex; gap: 10px; align-items: flex-start; color: #444; font-size: 0.98em; }
+        .price-note { max-width: 720px; margin: 0 0 34px; padding: 20px 24px; background: #F3EFF8; border-left: 3px solid #7B5C99; border-radius: 6px; text-align: left; }
+        .price-note p { margin: 0 0 8px; color: #333; }
+        .price-note p:last-child { margin-bottom: 0; }
+        .video-heading { font-size: 1.15em; font-weight: bold; color: #1a1a1a; margin: 0 0 16px; text-align: left; }
+        .video-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 34px; }
+        .video-embed { text-align: left; }
+        .video-frame { position: relative; width: 100%; padding-top: 56.25%; border-radius: 8px; overflow: hidden; background: #000; }
+        .video-frame iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+        .video-caption { margin: 8px 0 0; font-size: 0.85em; color: #777; text-align: center; }
+        .transcriber-contact { max-width: 720px; margin: 0 auto 34px; text-align: left; }
+        .transcriber-contact p { margin: 0 0 14px; color: #444; }
+        .transcriber-signature { margin-top: 34px; font-style: italic; color: #555; }
+        @media (max-width: 720px) { .transcriber-lists, .video-grid { grid-template-columns: 1fr; } }
     </style>
     <!-- Yandex.Metrika counter -->
     <script type="text/javascript">
@@ -668,13 +687,60 @@
     <main>
         <section class="dev-page">
             <h1>Код реализации</h1>
-            <p>Находится в разработке.</p>
-            <p>Скоро здесь появится актуальная информация о текущих программах и проектах.</p>
-            <p>А пока вы можете подписаться на канал <span class="brand">Лаборатория системного благополучия «Код&nbsp;Анисиной»</span>, где каждую пятницу идут еженедельные прямые эфиры и найдётся много интересного. Или пройти диагностику – нажимайте на кнопку ниже.</p>
+            <p class="video-heading" style="margin-top:-10px;font-size:1.3em;">Транскрибатор</p>
+            <div class="transcriber-intro">
+                <p>Как вы знаете, я – про эффективность и быстрые результаты.</p>
+                <p>Поэтому попросила разработать программу, которая переводит аудио и видео файлы в текст бесплатно, без ограничений по времени и объёму файла и без выгрузки в интернет.</p>
+                <p>Такая программа была создана и успешно работает у меня и моих коллег на компьютере.</p>
+            </div>
+
+            <div class="transcriber-lists">
+                <div>
+                    <h3>Плюсы</h3>
+                    <ul>
+                        <li>✅ Не надо платить за транскрибацию ежемесячно на онлайн-сервисах</li>
+                        <li>✅ Нет ограничений по времени: транскрибирует любую продолжительность и объём файлов</li>
+                        <li>✅ Безопасность и автономная работа: не надо загружать ничего в интернет</li>
+                        <li>✅ Работает даже тогда, когда нет интернета!</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3>Из условных недостатков</h3>
+                    <ul>
+                        <li>❎ Нужно свободное место на компьютере, чтобы развернуть модель (около 2 ГБ)</li>
+                        <li>❎ Работает медленнее, чем онлайн-модели</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="price-note">
+                <p>До конца сентября транскрибатор можно приобрести за 1500 рублей / 15 евро с моим сопровождением по установке до получения результата 🎁.</p>
+                <p>С октября то же самое будет стоить уже 3000 рублей / 30 евро.</p>
+            </div>
+
+            <p class="video-heading">Видео о том, как транскрибатор работает у меня</p>
+            <div class="video-grid">
+                <div class="video-embed">
+                    <div class="video-frame"><iframe src="https://www.youtube.com/embed/dKjm2hCT_Fw" title="Транскрибатор: видео на YouTube" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe></div>
+                    <p class="video-caption">Видео на YouTube</p>
+                </div>
+                <div class="video-embed">
+                    <div class="video-frame"><iframe src="https://rutube.ru/play/embed/2d16de118a6ee4032bda8c22426928af/" title="Транскрибатор: видео на RUTUBE" allow="clipboard-write; autoplay" allowfullscreen loading="lazy"></iframe></div>
+                    <p class="video-caption">Видео на RUTUBE</p>
+                </div>
+            </div>
+
+            <div class="transcriber-contact">
+                <p>Если вам понадобятся какие-либо уточнения, пожалуйста, обращайтесь через <a href="zapis.html?source=consultation">форму бесплатной консультации</a>.</p>
+                <p>А если вы хотите купить транскрибатор, переходите по ссылке на оплату. Как только оплата пройдёт, я сама свяжусь с вами, и мы договоримся о встрече для установки транскрибатора.</p>
+            </div>
+
             <div class="dev-buttons">
-                <a href="index.html?quiz=1#diagnostic" class="btn-primary">Пройти диагностику</a>
+                <a href="zapis.html?source=transcriber" id="transcriber-buy" class="btn-primary">Купить транскрибатор</a>
                 <a href="https://t.me/anisinalab" class="btn-secondary btn-tg" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg> Перейти в Телеграм-канал</a>
             </div>
+
+            <p class="transcriber-contact transcriber-signature">Если появятся вопросы, пожалуйста, обращайтесь – я на связи.<br><br>С уважением,<br>Евгения Анисина</p>
             <p class="back"><a href="index.html#codes">← Ко всем кодам</a></p>
         </section>
     </main>
@@ -727,7 +793,7 @@
         <div class="footer-bottom">
             <div>© 2026 Евгения Анисина. Все права защищены.</div>
             <div class="footer-bottom-links">
-                <a href="#">Политика конфиденциальности</a>
+                <a href="#" id="policy-link">Политика конфиденциальности</a>
                 <a href="#">Оферта</a>
                 <a href="#">Согласие на обработку персональных данных</a>
             </div>
@@ -773,6 +839,45 @@
                 }
             });
         });
+    </script>
+    <script>
+        (function () {
+            var c = window.AL_QUIZ_CONFIG || {};
+            var btn = document.getElementById('transcriber-buy');
+            if (!btn) return;
+            if (c.transcriberOpen === true && c.transcriberUrl) {
+                btn.setAttribute('href', c.transcriberUrl);
+                if (/^https?:/i.test(c.transcriberUrl)) { btn.setAttribute('target', '_blank'); btn.setAttribute('rel', 'noopener'); }
+            } else {
+                btn.setAttribute('href', 'zapis.html?source=transcriber');
+            }
+        })();
+    </script>
+    <div id="cookie-banner" class="cookie-banner" hidden role="region" aria-label="Уведомление об использовании cookie">
+        <p>Мы используем cookie-файлы, чтобы сайт работал корректно и был удобным для вас. Продолжая пользоваться сайтом, вы соглашаетесь с их использованием. <a href="#">Подробнее</a></p>
+        <button type="button" id="cookie-ok" class="cookie-banner__btn">OK</button>
+    </div>
+    <style>
+        .cookie-banner { position: fixed; left: 0; right: 0; bottom: 0; z-index: 1000; display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 12px 24px; padding: 16px 24px; padding-bottom: calc(16px + env(safe-area-inset-bottom, 0px)); background: #2c2c2c; color: #f0f0f0; font-family: Georgia, 'Times New Roman', serif; font-size: 0.92em; line-height: 1.5; box-shadow: 0 -2px 15px rgba(0,0,0,0.15); }
+        .cookie-banner p { margin: 0; max-width: 720px; color: inherit; text-align: left; }
+        .cookie-banner a { color: #d8c7ee; text-decoration: underline; }
+        .cookie-banner__btn { flex: none; padding: 10px 28px; border: 1px solid #fff; border-radius: 5px; background: transparent; color: #fff; font: inherit; font-weight: bold; cursor: pointer; }
+        .cookie-banner__btn:hover { background: #fff; color: #2c2c2c; }
+    </style>
+    <script>
+        (function () {
+            var KEY = 'al_cookie_notice_seen';
+            var banner = document.getElementById('cookie-banner');
+            var btn = document.getElementById('cookie-ok');
+            if (!banner || !btn) return;
+            var seen = false;
+            try { seen = localStorage.getItem(KEY) === '1'; } catch (e) {}
+            if (!seen) banner.hidden = false;
+            btn.addEventListener('click', function () {
+                banner.hidden = true;
+                try { localStorage.setItem(KEY, '1'); } catch (e) {}
+            });
+        })();
     </script>
 </body>
 </html>

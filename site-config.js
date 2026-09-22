@@ -24,6 +24,8 @@ window.AL_QUIZ_CONFIG = {
     formUrl: 'https://forms.yandex.ru/u/6ab03b1d902902a095a347dc',   // Яндекс Форма (встроена в zapis.html)
     bookingUrl: 'zapis.html?source=consultation',                      // страница записи на консультацию
     clubUrl: 'zapis.html?source=club',                                 // ВРЕМЕННО лист ожидания. Потом ссылка Продамуса
+    transcriberOpen: false,                                            // true, когда будет готова ссылка на оплату транскрибатора
+    transcriberUrl: '',                                                // ссылка на оплату (Продамус). Пока пусто, кнопка ведёт на форму записи
 
     /* ---------- ТЕКСТЫ ---------- */
 
