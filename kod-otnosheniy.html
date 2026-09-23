@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Код семьи и рода | Лаборатория системного благополучия «Код Анисиной»</title>
-    <meta name="description" content="Код семьи и рода: закрытый клуб «Резиденция Анисиной» откроет свои двери 1 октября 2026 года.">
+    <title>Код отношений | Лаборатория системного благополучия «Код Анисиной»</title>
+    <meta name="description" content="Код отношений: страница в разработке. Подпишитесь на канал лаборатории «Код Анисиной» в Телеграм.">
     <meta name="robots" content="noindex">
     <style>
         * {
@@ -700,16 +700,14 @@
 
     <main>
         <section class="dev-page">
-            <h1>Код семьи и рода</h1>
+            <h1>Код отношений</h1>
             <p>Находится в разработке.</p>
-            <p>Приглашаем в <span class="keep">ЗАКРЫТЫЙ&nbsp;КЛУБ «РЕЗИДЕНЦИЯ&nbsp;АНИСИНОЙ»</span>, который откроет свои двери <span class="nb">с 1 октября 2026 года</span>.</p>
-            <p>Сейчас действует специальная цена на подписку: <span class="nb">500 ₽/мес вместо 1 000 ₽</span>.</p>
+            <p>Скоро здесь появится актуальная информация о текущих программах и проектах.</p>
+            <p>А пока вы можете подписаться на канал <span class="brand">Лаборатория системного благополучия «Код&nbsp;Анисиной»</span>, где каждую пятницу идут еженедельные прямые эфиры и найдётся много интересного. Или пройти диагностику – нажимайте на кнопку ниже.</p>
             <div class="dev-buttons">
+                <a href="index.html?quiz=1#diagnostic" class="btn-primary">Пройти диагностику</a>
                 <a href="https://t.me/anisinalab" class="btn-secondary btn-tg" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg> Перейти в Телеграм-канал</a>
-                <!-- ССЫЛКА НА ПРОДАМУС: когда она будет готова, замените адрес в href у кнопки «Вступить в клуб» -->
-                <a href="zapis.html?source=club" id="club-btn" class="btn-primary" style="display: none;">Вступить в клуб</a>
             </div>
-            <p id="club-closed">Приём заявок в клуб откроется позже. Следите за анонсами в Telegram-канале.</p>
             <p class="back"><a href="index.html#codes">← Ко всем кодам</a></p>
         </section>
     </main>
@@ -788,22 +786,6 @@
                 }
             });
         });
-    </script>
-    <script>
-        (function () {
-            var c = window.AL_QUIZ_CONFIG || {};
-            var btn = document.getElementById('club-btn');
-            var note = document.getElementById('club-closed');
-            if (!btn) return;
-            if (c.clubOpen === true) {
-                if (c.clubUrl) {
-                    btn.setAttribute('href', c.clubUrl);
-                    if (/^https?:/i.test(c.clubUrl)) { btn.setAttribute('target', '_blank'); btn.setAttribute('rel', 'noopener'); }
-                }
-                btn.style.display = '';
-                if (note) note.style.display = 'none';
-            }
-        })();
     </script>
 </body>
 </html>

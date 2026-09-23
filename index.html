@@ -81,51 +81,6 @@
             background-color: #f0e6ff;
         }
         
-        /* SCROLL ANIMATIONS */
-        .scroll-reveal {
-            opacity: 0;
-            transform: translateY(50px);
-            transition: all 0.8s ease-out;
-        }
-        
-        .scroll-reveal.active {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        
-        .scroll-reveal-left {
-            opacity: 0;
-            transform: translateX(-50px);
-            transition: all 0.8s ease-out;
-        }
-        
-        .scroll-reveal-left.active {
-            opacity: 1;
-            transform: translateX(0);
-        }
-        
-        .scroll-reveal-right {
-            opacity: 0;
-            transform: translateX(50px);
-            transition: all 0.8s ease-out;
-        }
-        
-        .scroll-reveal-right.active {
-            opacity: 1;
-            transform: translateX(0);
-        }
-        
-        .scroll-reveal-scale {
-            opacity: 0;
-            transform: scale(0.8);
-            transition: all 0.8s ease-out;
-        }
-        
-        .scroll-reveal-scale.active {
-            opacity: 1;
-            transform: scale(1);
-        }
-        
         /* ГЛАВНЫЙ ЭКРАН С ФОТО */
         .hero {
             max-width: 1200px;
@@ -350,6 +305,18 @@
         .code-card a:hover {
             color: #5E4477;
             border-bottom-color: #5E4477;
+        }
+
+        .code-card h3 a {
+            color: inherit;
+            font-weight: inherit;
+            text-decoration: none;
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+
+        .code-card h3 a:hover {
+            text-decoration: underline;
         }
 
         .code-card p.club-notice {
@@ -617,6 +584,53 @@
             gap: 12px 24px;
         }
 
+
+
+        /* =====================================================================
+           СКРОЛЛ-АНИМАЦИЯ БЕЗ JAVASCRIPT (CSS scroll-driven animations)
+           Работает через animation-timeline: view() - поддерживают Chrome,
+           Edge, Opera (на сентябрь 2026 года). В Safari и Firefox блок
+           @supports не сработает, и контент просто сразу виден, без анимации -
+           это специально, чтобы там ничего не пряталось.
+           Подвал (footer) сюда намеренно не входит - остаётся неподвижным.
+           ===================================================================== */
+        @supports (animation-timeline: view()) {
+            .hero-text, .hero-photo, .about-content,
+            #codes h2, #codes .subtitle, .code-card,
+            .diagnostic h2, .diagnostic p, .diagnostic > a, .diagnostic .alq {
+                animation: al-reveal linear both;
+                animation-timeline: view();
+                animation-range: entry 0% entry 45%;
+            }
+
+            @keyframes al-reveal {
+                from { opacity: 0; transform: translateY(36px); }
+                to   { opacity: 1; transform: none; }
+            }
+
+            /* «Стопка карточек»: каждая карточка слегка увеличивается и
+               обретает более глубокую тень по мере того, как въезжает в
+               экран - лёгкий эффект стопки, сохраняющий сетку 2 в ряд. */
+            .code-card {
+                animation: al-reveal linear both, al-card-settle linear both;
+                animation-timeline: view(), view();
+                animation-range: entry 0% entry 45%, entry 0% entry 60%;
+            }
+
+            @keyframes al-card-settle {
+                from { transform: scale(0.94); box-shadow: 0 4px 20px rgba(0,0,0,0.06); }
+                to   { transform: scale(1); box-shadow: 0 8px 30px rgba(0,0,0,0.12); }
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .hero-text, .hero-photo, .about-content,
+            #codes h2, #codes .subtitle, .code-card,
+            .diagnostic h2, .diagnostic p, .diagnostic > a, .diagnostic .alq {
+                animation: none !important;
+            }
+        }
+
 :root,.alq,.alm,.alb{
   --al-ink:#1D1B3A;
   --al-ink-2:#4A4870;
@@ -736,10 +750,10 @@
             <div class="logo">Код Анисиной</div>
             <ul class="nav-links">
                 <li><a href="#about">Обо мне</a></li>
-                <li><a href="#health">Код здоровья</a></li>
-                <li><a href="#relationships">Код отношений</a></li>
-                <li><a href="#realization">Код реализации</a></li>
-                <li><a href="#family">Код семьи и рода</a></li>
+                <li><a href="kod-zdorovya.html">Код здоровья</a></li>
+                <li><a href="kod-otnosheniy.html">Код отношений</a></li>
+                <li><a href="kod-realizacii.html">Код реализации</a></li>
+                <li><a href="kod-semi-i-roda.html">Код семьи и рода</a></li>
             </ul>
             <a href="#diagnostic" class="cta-button">Пройти диагностику</a>
         </nav>
@@ -747,7 +761,7 @@
 
     <!-- ГЛАВНЫЙ ЭКРАН С ФОТО -->
     <section class="hero">
-        <div class="hero-text scroll-reveal-left">
+        <div class="hero-text">
             <h1><span class="brand">Лаборатория системного благополучия «Код&nbsp;Анисиной»</span></h1>
             <p style="margin-bottom: 15px;">Помогаю найти причины и разрешить проблемы со здоровьем, в отношениях и реализации.</p>
             <p>Благополучие – системно. Все связано со всем.</p>
@@ -763,7 +777,7 @@
 
     <!-- ОБО МНЕ -->
     <section class="about" id="about">
-        <div class="about-content scroll-reveal">
+        <div class="about-content">
             <h2>Обо мне</h2>
             <p><strong>Евгения Анисина</strong> – специалист по системному благополучию и просемейный психолог. <span class="keep">15&nbsp;лет в доказательной медицине и психологии.</span></p>
             <p>Восстановление здоровья, энергии и гармонии в отношениях через медицину, психологию и исследование семейных сценариев.</p>
@@ -774,36 +788,36 @@
 
     <!-- 4 КОДА (2 В РЯД) -->
     <section id="codes">
-        <h2 class="scroll-reveal">4 кода системного благополучия</h2>
-        <p class="subtitle scroll-reveal">Выберите направление, которое откликается вам больше всего</p>
+        <h2>4 кода системного благополучия</h2>
+        <p class="subtitle">Выберите направление, которое откликается вам больше всего</p>
         
         <div class="codes-grid">
-            <div class="code-card scroll-reveal-left" id="health">
-                <h3>Код здоровья</h3>
+            <div class="code-card" id="health">
+                <h3><a href="kod-zdorovya.html">Код здоровья</a></h3>
                 <p>Верните себе энергию и жизненную силу через системную работу с телом и психикой.</p>
                 <div class="product-name">Мастер-группа «Второе дыхание»</div>
                 <div class="details">6 недель · 10-12 человек · личное сопровождение</div>
                 <p><a href="kod-zdorovya.html">Подробнее →</a></p>
             </div>
 
-            <div class="code-card scroll-reveal-right" id="relationships">
-                <h3>Код отношений</h3>
+            <div class="code-card" id="relationships">
+                <h3><a href="kod-otnosheniy.html">Код отношений</a></h3>
                 <p>Начните менять жизнь к лучшему уже сейчас. Решение всегда найдётся, если знать, где искать.</p>
                 <div class="product-name">10-дневное сопровождение</div>
                 <div class="details">С моим авторским методом изменения к лучшему неизбежны, с гарантией результата менее чем за 10 дней. Проверим?</div>
                 <p><a href="#diagnostic">Пройти диагностику →</a></p>
             </div>
 
-            <div class="code-card scroll-reveal-left" id="realization">
-                <h3>Код реализации</h3>
+            <div class="code-card" id="realization">
+                <h3><a href="kod-realizacii.html">Код реализации</a></h3>
                 <p>Монетизируйте свою экспертизу и создайте устойчивый доход.</p>
                 <div class="product-name">«Продвижение онлайн под ключ»</div>
                 <div class="details">6 недель · эффективные инструменты · соберём сайт · настроим трафик</div>
                 <p><a href="kod-realizacii.html">Подробнее →</a></p>
             </div>
 
-            <div class="code-card scroll-reveal-right" id="family">
-                <h3>Код семьи и рода</h3>
+            <div class="code-card" id="family">
+                <h3><a href="kod-semi-i-roda.html">Код семьи и рода</a></h3>
                 <p>Совершите увлекательное исследование семейных сценариев и найдите опору в родовых историях.</p>
                 <div class="product-name"><span class="keep">Закрытая группа «Резиденция&nbsp;Анисиной»</span></div>
                 <div class="details">Курс для самостоятельного поиска информации о предках в открытых источниках и архивах, а также ежемесячные встречи с разбором ваших историй и реальной помощью.</div>
@@ -813,7 +827,7 @@
     </section>
 
     <!-- ДИАГНОСТИКА -->
-    <section id="diagnostic" class="diagnostic scroll-reveal-scale">
+    <section id="diagnostic" class="diagnostic">
         <h2>Бесплатная диагностика</h2>
         <p>3 минуты, которые помогут понять корень вашей проблемы и выбрать правильный путь работы. Без обязательств и продаж – только ясность.</p>
         <a href="zapis.html?source=consultation" class="btn-primary" data-al-start>Пройти диагностику</a>
@@ -831,30 +845,30 @@
     <!-- ФУТЕР -->
     <footer>
         <div class="footer-content">
-            <div class="footer-col scroll-reveal-left">
+            <div class="footer-col">
                 <h4>Евгения Анисина</h4>
                 <p>Специалист по системному благополучию и просемейный психолог.<br><span class="keep">15&nbsp;лет в доказательной медицине и психологии.</span></p>
             </div>
 
-            <div class="footer-col scroll-reveal">
+            <div class="footer-col">
                 <h4>Навигация</h4>
                 <ul>
                     <li><a href="#codes">Программы</a></li>
                     <li><a href="#about">Обо мне</a></li>
-                    <li><a href="#health">Код здоровья</a></li>
-                    <li><a href="#relationships">Код отношений</a></li>
-                    <li><a href="#realization">Код реализации</a></li>
-                    <li><a href="#family">Код семьи и рода</a></li>
+                    <li><a href="kod-zdorovya.html">Код здоровья</a></li>
+                    <li><a href="kod-otnosheniy.html">Код отношений</a></li>
+                    <li><a href="kod-realizacii.html">Код реализации</a></li>
+                    <li><a href="kod-semi-i-roda.html">Код семьи и рода</a></li>
                 </ul>
             </div>
 
-            <div class="footer-col scroll-reveal">
+            <div class="footer-col">
                 <h4>Контакты</h4>
                 <a href="mailto:info@anisinalab.ru" class="email-link">✉ info@anisinalab.ru</a>
                 <div class="contact-item"><span>🌐</span> <span class="brand">Лаборатория системного благополучия «Код&nbsp;Анисиной»</span></div>
             </div>
 
-            <div class="footer-col scroll-reveal-right">
+            <div class="footer-col">
                 <h4>Начните сейчас</h4>
                 <p>Пройдите диагностику и получите персональные рекомендации</p>
                 <div class="footer-buttons">
@@ -867,7 +881,7 @@
         <hr class="footer-divider">
 
         <div class="footer-disclaimer">
-            Информация на сайте и в программах Евгении Анисиной носит образовательный характер и не является медицинской услугой, постановкой диагноза или назначением лечения. Она не заменяет консультацию врача. Программы работают с образом жизни – питанием, сном, движением и восстановлением – и не предполагают отмены или изменения назначенных врачом препаратов. При наличии заболеваний, а также перед изменением питания или приёмом добавок проконсультируйтесь со своим лечащим врачом.
+            Информация на сайте и в программах Евгении Анисиной носит информационный характер и не является медицинской услугой, постановкой диагноза или назначением лечения. Она не заменяет консультацию врача. Программы работают с образом жизни – питанием, сном, движением и восстановлением – и не предполагают отмены или изменения назначенных врачом препаратов. При наличии заболеваний, а также перед изменением питания или приёмом добавок проконсультируйтесь со своим лечащим врачом.
         </div>
 
         <div class="footer-disclaimer">
@@ -1281,28 +1295,8 @@
 })();
     </script>
 
-    <!-- JAVASCRIPT ДЛЯ SCROLL ANIMATIONS -->
+    <!-- ПЛАВНАЯ ПРОКРУТКА ДЛЯ ЯКОРНЫХ ССЫЛОК -->
     <script>
-        // Функция для отслеживания появления элементов при скролле
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver(function(entries) {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('active');
-                }
-            });
-        }, observerOptions);
-
-        // Наблюдаем за всеми элементами с классом scroll-reveal
-        document.querySelectorAll('.scroll-reveal, .scroll-reveal-left, .scroll-reveal-right, .scroll-reveal-scale').forEach(el => {
-            observer.observe(el);
-        });
-
-        // Плавная прокрутка для якорных ссылок
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 const id = this.getAttribute('href');
@@ -1322,28 +1316,41 @@
         });
     </script>
     <div id="cookie-banner" class="cookie-banner" hidden role="region" aria-label="Уведомление об использовании cookie">
-        <p>Мы используем cookie-файлы, чтобы сайт работал корректно и был удобным для вас. Продолжая пользоваться сайтом, вы соглашаетесь с их использованием. <a href="#">Подробнее</a></p>
+        <p>Мы используем cookie-файлы, чтобы сайт работал корректно и был удобным для вас. Продолжая пользоваться сайтом, вы соглашаетесь с их использованием.</p>
         <button type="button" id="cookie-ok" class="cookie-banner__btn">OK</button>
     </div>
     <style>
-        .cookie-banner { position: fixed; left: 0; right: 0; bottom: 0; z-index: 1000; display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 12px 24px; padding: 16px 24px; padding-bottom: calc(16px + env(safe-area-inset-bottom, 0px)); background: #2c2c2c; color: #f0f0f0; font-family: Georgia, 'Times New Roman', serif; font-size: 0.92em; line-height: 1.5; box-shadow: 0 -2px 15px rgba(0,0,0,0.15); }
-        .cookie-banner p { margin: 0; max-width: 720px; color: inherit; text-align: left; }
-        .cookie-banner a { color: #d8c7ee; text-decoration: underline; }
-        .cookie-banner__btn { flex: none; padding: 10px 28px; border: 1px solid #fff; border-radius: 5px; background: transparent; color: #fff; font: inherit; font-weight: bold; cursor: pointer; }
-        .cookie-banner__btn:hover { background: #fff; color: #2c2c2c; }
+        .cookie-banner {
+            position: fixed; left: 0; right: 0; bottom: 0; z-index: 1000;
+            display: flex; flex-wrap: wrap; align-items: center; justify-content: center;
+            gap: 14px 28px; padding: 18px 24px;
+            padding-bottom: calc(18px + env(safe-area-inset-bottom, 0px));
+            background: #F1F1F1; border-top: 1px solid #ddd;
+            box-shadow: 0 -2px 15px rgba(0,0,0,0.08);
+            opacity: 0; transform: translateY(12px);
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+        .cookie-banner.is-visible { opacity: 1; transform: none; }
+        .cookie-banner p { margin: 0; max-width: 760px; color: #333; font-family: Georgia, 'Times New Roman', serif; font-size: 0.95em; line-height: 1.5; text-align: left; }
+        .cookie-banner__btn { flex: none; padding: 10px 28px; border: 1px solid #999; border-radius: 5px; background: #fff; color: #333; font: inherit; font-weight: bold; cursor: pointer; }
+        .cookie-banner__btn:hover { background: #e6e6e6; }
+        @media (prefers-reduced-motion: reduce) { .cookie-banner { transition: none; } }
     </style>
     <script>
         (function () {
             var KEY = 'al_cookie_notice_seen';
+            var seen = false;
+            try { seen = localStorage.getItem(KEY) === '1'; } catch (e) {}
+            if (seen) return;
             var banner = document.getElementById('cookie-banner');
             var btn = document.getElementById('cookie-ok');
             if (!banner || !btn) return;
-            var seen = false;
-            try { seen = localStorage.getItem(KEY) === '1'; } catch (e) {}
-            if (!seen) banner.hidden = false;
+            banner.hidden = false;
+            requestAnimationFrame(function () { banner.classList.add('is-visible'); });
             btn.addEventListener('click', function () {
-                banner.hidden = true;
+                banner.classList.remove('is-visible');
                 try { localStorage.setItem(KEY, '1'); } catch (e) {}
+                setTimeout(function () { banner.hidden = true; }, 300);
             });
         })();
     </script>

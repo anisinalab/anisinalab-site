@@ -82,51 +82,6 @@
             background-color: #f0e6ff;
         }
         
-        /* SCROLL ANIMATIONS */
-        .scroll-reveal {
-            opacity: 0;
-            transform: translateY(50px);
-            transition: all 0.8s ease-out;
-        }
-        
-        .scroll-reveal.active {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        
-        .scroll-reveal-left {
-            opacity: 0;
-            transform: translateX(-50px);
-            transition: all 0.8s ease-out;
-        }
-        
-        .scroll-reveal-left.active {
-            opacity: 1;
-            transform: translateX(0);
-        }
-        
-        .scroll-reveal-right {
-            opacity: 0;
-            transform: translateX(50px);
-            transition: all 0.8s ease-out;
-        }
-        
-        .scroll-reveal-right.active {
-            opacity: 1;
-            transform: translateX(0);
-        }
-        
-        .scroll-reveal-scale {
-            opacity: 0;
-            transform: scale(0.8);
-            transition: all 0.8s ease-out;
-        }
-        
-        .scroll-reveal-scale.active {
-            opacity: 1;
-            transform: scale(1);
-        }
-        
         /* ГЛАВНЫЙ ЭКРАН С ФОТО */
         .hero {
             max-width: 1200px;
@@ -351,6 +306,18 @@
         .code-card a:hover {
             color: #5E4477;
             border-bottom-color: #5E4477;
+        }
+
+        .code-card h3 a {
+            color: inherit;
+            font-weight: inherit;
+            text-decoration: none;
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+
+        .code-card h3 a:hover {
+            text-decoration: underline;
         }
 
         .code-card p.club-notice {
@@ -619,6 +586,53 @@
         }
 
 
+
+        /* =====================================================================
+           СКРОЛЛ-АНИМАЦИЯ БЕЗ JAVASCRIPT (CSS scroll-driven animations)
+           Работает через animation-timeline: view() - поддерживают Chrome,
+           Edge, Opera (на сентябрь 2026 года). В Safari и Firefox блок
+           @supports не сработает, и контент просто сразу виден, без анимации -
+           это специально, чтобы там ничего не пряталось.
+           Подвал (footer) сюда намеренно не входит - остаётся неподвижным.
+           ===================================================================== */
+        @supports (animation-timeline: view()) {
+            .hero-text, .hero-photo, .about-content,
+            #codes h2, #codes .subtitle, .code-card,
+            .diagnostic h2, .diagnostic p, .diagnostic > a, .diagnostic .alq {
+                animation: al-reveal linear both;
+                animation-timeline: view();
+                animation-range: entry 0% entry 45%;
+            }
+
+            @keyframes al-reveal {
+                from { opacity: 0; transform: translateY(36px); }
+                to   { opacity: 1; transform: none; }
+            }
+
+            /* «Стопка карточек»: каждая карточка слегка увеличивается и
+               обретает более глубокую тень по мере того, как въезжает в
+               экран - лёгкий эффект стопки, сохраняющий сетку 2 в ряд. */
+            .code-card {
+                animation: al-reveal linear both, al-card-settle linear both;
+                animation-timeline: view(), view();
+                animation-range: entry 0% entry 45%, entry 0% entry 60%;
+            }
+
+            @keyframes al-card-settle {
+                from { transform: scale(0.94); box-shadow: 0 4px 20px rgba(0,0,0,0.06); }
+                to   { transform: scale(1); box-shadow: 0 8px 30px rgba(0,0,0,0.12); }
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .hero-text, .hero-photo, .about-content,
+            #codes h2, #codes .subtitle, .code-card,
+            .diagnostic h2, .diagnostic p, .diagnostic > a, .diagnostic .alq {
+                animation: none !important;
+            }
+        }
+
+
         .dev-page { text-align: center; padding: 100px 20px 120px; }
         .dev-page h1 { font-size: 2.4em; font-weight: normal; color: #1a1a1a; margin-bottom: 30px; line-height: 1.2; }
         .dev-page p { margin: 0 auto 24px; max-width: 720px; font-size: 1.1em; color: #444; }
@@ -675,10 +689,10 @@
             <div class="logo"><a href="index.html" style="color:inherit;text-decoration:none">Код Анисиной</a></div>
             <ul class="nav-links">
                 <li><a href="index.html#about">Обо мне</a></li>
-                <li><a href="index.html#health">Код здоровья</a></li>
-                <li><a href="index.html#relationships">Код отношений</a></li>
-                <li><a href="index.html#realization">Код реализации</a></li>
-                <li><a href="index.html#family">Код семьи и рода</a></li>
+                <li><a href="kod-zdorovya.html">Код здоровья</a></li>
+                <li><a href="kod-otnosheniy.html">Код отношений</a></li>
+                <li><a href="kod-realizacii.html">Код реализации</a></li>
+                <li><a href="kod-semi-i-roda.html">Код семьи и рода</a></li>
             </ul>
             <a href="index.html?quiz=1#diagnostic" class="cta-button">Пройти диагностику</a>
         </nav>
@@ -700,30 +714,30 @@
 
     <footer>
         <div class="footer-content">
-            <div class="footer-col scroll-reveal-left">
+            <div class="footer-col">
                 <h4>Евгения Анисина</h4>
                 <p>Специалист по системному благополучию и просемейный психолог.<br><span class="keep">15&nbsp;лет в доказательной медицине и психологии.</span></p>
             </div>
 
-            <div class="footer-col scroll-reveal">
+            <div class="footer-col">
                 <h4>Навигация</h4>
                 <ul>
                     <li><a href="index.html#codes">Программы</a></li>
                     <li><a href="index.html#about">Обо мне</a></li>
-                    <li><a href="index.html#health">Код здоровья</a></li>
-                    <li><a href="index.html#relationships">Код отношений</a></li>
-                    <li><a href="index.html#realization">Код реализации</a></li>
-                    <li><a href="index.html#family">Код семьи и рода</a></li>
+                    <li><a href="kod-zdorovya.html">Код здоровья</a></li>
+                    <li><a href="kod-otnosheniy.html">Код отношений</a></li>
+                    <li><a href="kod-realizacii.html">Код реализации</a></li>
+                    <li><a href="kod-semi-i-roda.html">Код семьи и рода</a></li>
                 </ul>
             </div>
 
-            <div class="footer-col scroll-reveal">
+            <div class="footer-col">
                 <h4>Контакты</h4>
                 <a href="mailto:info@anisinalab.ru" class="email-link">✉ info@anisinalab.ru</a>
                 <div class="contact-item"><span>🌐</span> <span class="brand">Лаборатория системного благополучия «Код&nbsp;Анисиной»</span></div>
             </div>
 
-            <div class="footer-col scroll-reveal-right">
+            <div class="footer-col">
                 <h4>Начните сейчас</h4>
                 <p>Пройдите диагностику и получите персональные рекомендации</p>
                 <div class="footer-buttons">
@@ -736,7 +750,7 @@
         <hr class="footer-divider">
 
         <div class="footer-disclaimer">
-            Информация на сайте и в программах Евгении Анисиной носит образовательный характер и не является медицинской услугой, постановкой диагноза или назначением лечения. Она не заменяет консультацию врача. Программы работают с образом жизни – питанием, сном, движением и восстановлением – и не предполагают отмены или изменения назначенных врачом препаратов. При наличии заболеваний, а также перед изменением питания или приёмом добавок проконсультируйтесь со своим лечащим врачом.
+            Информация на сайте и в программах Евгении Анисиной носит информационный характер и не является медицинской услугой, постановкой диагноза или назначением лечения. Она не заменяет консультацию врача. Программы работают с образом жизни – питанием, сном, движением и восстановлением – и не предполагают отмены или изменения назначенных врачом препаратов. При наличии заболеваний, а также перед изменением питания или приёмом добавок проконсультируйтесь со своим лечащим врачом.
         </div>
 
         <div class="footer-disclaimer">
@@ -755,26 +769,6 @@
 
     <script src="site-config.js"></script>
     <script>
-        // Функция для отслеживания появления элементов при скролле
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver(function(entries) {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('active');
-                }
-            });
-        }, observerOptions);
-
-        // Наблюдаем за всеми элементами с классом scroll-reveal
-        document.querySelectorAll('.scroll-reveal, .scroll-reveal-left, .scroll-reveal-right, .scroll-reveal-scale').forEach(el => {
-            observer.observe(el);
-        });
-
-        // Плавная прокрутка для якорных ссылок
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 const id = this.getAttribute('href');
@@ -792,32 +786,6 @@
                 }
             });
         });
-    </script>
-    <div id="cookie-banner" class="cookie-banner" hidden role="region" aria-label="Уведомление об использовании cookie">
-        <p>Мы используем cookie-файлы, чтобы сайт работал корректно и был удобным для вас. Продолжая пользоваться сайтом, вы соглашаетесь с их использованием. <a href="#">Подробнее</a></p>
-        <button type="button" id="cookie-ok" class="cookie-banner__btn">OK</button>
-    </div>
-    <style>
-        .cookie-banner { position: fixed; left: 0; right: 0; bottom: 0; z-index: 1000; display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 12px 24px; padding: 16px 24px; padding-bottom: calc(16px + env(safe-area-inset-bottom, 0px)); background: #2c2c2c; color: #f0f0f0; font-family: Georgia, 'Times New Roman', serif; font-size: 0.92em; line-height: 1.5; box-shadow: 0 -2px 15px rgba(0,0,0,0.15); }
-        .cookie-banner p { margin: 0; max-width: 720px; color: inherit; text-align: left; }
-        .cookie-banner a { color: #d8c7ee; text-decoration: underline; }
-        .cookie-banner__btn { flex: none; padding: 10px 28px; border: 1px solid #fff; border-radius: 5px; background: transparent; color: #fff; font: inherit; font-weight: bold; cursor: pointer; }
-        .cookie-banner__btn:hover { background: #fff; color: #2c2c2c; }
-    </style>
-    <script>
-        (function () {
-            var KEY = 'al_cookie_notice_seen';
-            var banner = document.getElementById('cookie-banner');
-            var btn = document.getElementById('cookie-ok');
-            if (!banner || !btn) return;
-            var seen = false;
-            try { seen = localStorage.getItem(KEY) === '1'; } catch (e) {}
-            if (!seen) banner.hidden = false;
-            btn.addEventListener('click', function () {
-                banner.hidden = true;
-                try { localStorage.setItem(KEY, '1'); } catch (e) {}
-            });
-        })();
     </script>
 </body>
 </html>
