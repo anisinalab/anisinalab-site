@@ -246,28 +246,81 @@
             letter-spacing: 1px;
         }
         
-        /* КАРТОЧКИ КОДОВ - 2 В РЯД */
+        /* КАРТОЧКИ КОДОВ - СТОПКОЙ, ДРУГ ЗА ДРУГОМ */
         .codes-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 30px;
-            margin-top: 40px;
+            display: block;
+            max-width: 720px;
+            margin: 40px auto 0;
         }
-        
+
+        /* .code-card - невидимая "дорожка": задаёт высоту прокрутки для одной карточки.
+           Сама видимая карточка - это .code-card__inner внутри неё (см. ниже).
+           Запас должен быть заметной долей экрана, иначе фаза "прилипания"
+           пролетает за долю секунды прокрутки и эффект стопки не виден. */
         .code-card {
+            padding-bottom: 55vh;
+        }
+
+        .code-card:last-child {
+            padding-bottom: 8vh;
+        }
+
+        @media (max-width: 768px) {
+            .code-card {
+                padding-bottom: 32vh;
+            }
+        }
+
+        .code-card__inner {
             background: white;
             padding: 35px 30px;
             border-radius: 10px;
             box-shadow: 0 4px 20px rgba(0,0,0,0.06);
-            transition: transform 0.3s, box-shadow 0.3s;
+            transition: box-shadow 0.3s;
             border-top: 3px solid #B8A9C9;
+            position: sticky;
+            top: 96px;
         }
-        
-        .code-card:hover {
-            transform: translateY(-5px);
+
+        .code-card:nth-child(2) .code-card__inner { top: 118px; }
+        .code-card:nth-child(3) .code-card__inner { top: 140px; }
+        .code-card:nth-child(4) .code-card__inner { top: 162px; }
+
+        .code-card__inner:hover {
             box-shadow: 0 8px 30px rgba(0,0,0,0.12);
         }
-        
+
+        /* Эффект стопки: карточка чуть уменьшается, когда её накрывает следующая.
+           Технология и формулы - по демо scroll-driven-animations.style/demos/stacking-cards.
+           Работает в Chrome/Edge/Opera; в остальных браузерах карточки просто
+           складываются друг на друга благодаря position: sticky, без уменьшения. */
+        @supports (animation-timeline: view()) {
+            .codes-grid {
+                view-timeline-name: --al-cards-scroll;
+            }
+
+            .code-card {
+                --al-index0: calc(var(--index) - 1);
+                --al-reverse-index: calc(4 - var(--al-index0));
+            }
+
+            .code-card__inner {
+                --al-start-range: calc(var(--al-index0) / 4 * 100%);
+                --al-end-range: calc(var(--index) / 4 * 100%);
+                animation: al-card-scale linear forwards;
+                animation-timeline: --al-cards-scroll;
+                animation-range: exit-crossing var(--al-start-range) exit-crossing var(--al-end-range);
+            }
+
+            @keyframes al-card-scale {
+                to { transform: scale(calc(1.1 - 0.1 * var(--al-reverse-index))); }
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .code-card__inner { animation: none !important; }
+        }
+
         .code-card h3 {
             font-size: 1.4em;
             color: #7B5C99;
@@ -555,11 +608,7 @@
                 font-size: 1.7em;
             }
             
-            .codes-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .footer-content {
+.footer-content {
                 grid-template-columns: 1fr;
             }
             
@@ -596,7 +645,7 @@
            ===================================================================== */
         @supports (animation-timeline: view()) {
             .hero-text, .hero-photo, .about-content,
-            #codes h2, #codes .subtitle, .code-card,
+            #codes h2, #codes .subtitle,
             .diagnostic h2, .diagnostic p, .diagnostic > a, .diagnostic .alq {
                 animation: al-reveal linear both;
                 animation-timeline: view();
@@ -607,25 +656,11 @@
                 from { opacity: 0; transform: translateY(36px); }
                 to   { opacity: 1; transform: none; }
             }
-
-            /* «Стопка карточек»: каждая карточка слегка увеличивается и
-               обретает более глубокую тень по мере того, как въезжает в
-               экран - лёгкий эффект стопки, сохраняющий сетку 2 в ряд. */
-            .code-card {
-                animation: al-reveal linear both, al-card-settle linear both;
-                animation-timeline: view(), view();
-                animation-range: entry 0% entry 45%, entry 0% entry 60%;
-            }
-
-            @keyframes al-card-settle {
-                from { transform: scale(0.94); box-shadow: 0 4px 20px rgba(0,0,0,0.06); }
-                to   { transform: scale(1); box-shadow: 0 8px 30px rgba(0,0,0,0.12); }
-            }
         }
 
         @media (prefers-reduced-motion: reduce) {
             .hero-text, .hero-photo, .about-content,
-            #codes h2, #codes .subtitle, .code-card,
+            #codes h2, #codes .subtitle,
             .diagnostic h2, .diagnostic p, .diagnostic > a, .diagnostic .alq {
                 animation: none !important;
             }
@@ -749,7 +784,6 @@
         <nav>
             <div class="logo">Код Анисиной</div>
             <ul class="nav-links">
-                <li><a href="#about">Обо мне</a></li>
                 <li><a href="kod-zdorovya.html">Код здоровья</a></li>
                 <li><a href="kod-otnosheniy.html">Код отношений</a></li>
                 <li><a href="kod-realizacii.html">Код реализации</a></li>
@@ -778,10 +812,9 @@
     <!-- ОБО МНЕ -->
     <section class="about" id="about">
         <div class="about-content">
-            <h2>Обо мне</h2>
-            <p><strong>Евгения Анисина</strong> – специалист по системному благополучию и просемейный психолог. <span class="keep">15&nbsp;лет в доказательной медицине и психологии.</span></p>
             <p>Восстановление здоровья, энергии и гармонии в отношениях через медицину, психологию и исследование семейных сценариев.</p>
             <p>Моя миссия – помочь вам увидеть глубинные системные связи, которые определяют ваше здоровье, отношения, реализацию и родовую историю. Я помогу найти ваши личные «коды» благополучия и выстроить жизнь по-новому.</p>
+  <p><strong>Евгения Анисина</strong> – специалист по системному благополучию и просемейный психолог. <span class="keep">15&nbsp;лет в доказательной медицине и психологии.</span></p>
             <div class="slogan"><span class="nb">Моя жизнь.</span> <span class="nb">Мои правила.</span></div>
         </div>
     </section>
@@ -792,36 +825,44 @@
         <p class="subtitle">Выберите направление, которое откликается вам больше всего</p>
         
         <div class="codes-grid">
-            <div class="code-card" id="health">
-                <h3><a href="kod-zdorovya.html">Код здоровья</a></h3>
-                <p>Верните себе энергию и жизненную силу через системную работу с телом и психикой.</p>
-                <div class="product-name">Мастер-группа «Второе дыхание»</div>
-                <div class="details">6 недель · 10-12 человек · личное сопровождение</div>
-                <p><a href="kod-zdorovya.html">Подробнее →</a></p>
+            <div class="code-card" id="health" style="--index: 1;">
+                <div class="code-card__inner">
+                    <h3><a href="kod-zdorovya.html">Код здоровья</a></h3>
+                    <p>Верните себе энергию и жизненную силу через системную работу с телом и психикой.</p>
+                    <div class="product-name">Мастер-группа «Второе дыхание»</div>
+                    <div class="details">6 недель · 10-12 человек · личное сопровождение</div>
+                    <p><a href="kod-zdorovya.html">Подробнее →</a></p>
+                </div>
             </div>
 
-            <div class="code-card" id="relationships">
-                <h3><a href="kod-otnosheniy.html">Код отношений</a></h3>
-                <p>Начните менять жизнь к лучшему уже сейчас. Решение всегда найдётся, если знать, где искать.</p>
-                <div class="product-name">10-дневное сопровождение</div>
-                <div class="details">С моим авторским методом изменения к лучшему неизбежны, с гарантией результата менее чем за 10 дней. Проверим?</div>
-                <p><a href="#diagnostic">Пройти диагностику →</a></p>
+            <div class="code-card" id="relationships" style="--index: 2;">
+                <div class="code-card__inner">
+                    <h3><a href="kod-otnosheniy.html">Код отношений</a></h3>
+                    <p>Начните менять жизнь к лучшему уже сейчас. Решение всегда найдётся, если знать, где искать.</p>
+                    <div class="product-name">10-дневное сопровождение</div>
+                    <div class="details">С моим авторским методом изменения к лучшему неизбежны, с гарантией результата менее чем за 10 дней. Проверим?</div>
+                    <p><a href="#diagnostic">Пройти диагностику →</a></p>
+                </div>
             </div>
 
-            <div class="code-card" id="realization">
-                <h3><a href="kod-realizacii.html">Код реализации</a></h3>
-                <p>Монетизируйте свою экспертизу и создайте устойчивый доход.</p>
-                <div class="product-name">«Продвижение онлайн под ключ»</div>
-                <div class="details">6 недель · эффективные инструменты · соберём сайт · настроим трафик</div>
-                <p><a href="kod-realizacii.html">Подробнее →</a></p>
+            <div class="code-card" id="realization" style="--index: 3;">
+                <div class="code-card__inner">
+                    <h3><a href="kod-realizacii.html">Код реализации</a></h3>
+                    <p>Монетизируйте свою экспертизу и создайте устойчивый доход.</p>
+                    <div class="product-name">«Продвижение онлайн под ключ»</div>
+                    <div class="details">6 недель · эффективные инструменты · соберём сайт · настроим трафик</div>
+                    <p><a href="kod-realizacii.html">Подробнее →</a></p>
+                </div>
             </div>
 
-            <div class="code-card" id="family">
-                <h3><a href="kod-semi-i-roda.html">Код семьи и рода</a></h3>
-                <p>Совершите увлекательное исследование семейных сценариев и найдите опору в родовых историях.</p>
-                <div class="product-name"><span class="keep">Закрытая группа «Резиденция&nbsp;Анисиной»</span></div>
-                <div class="details">Курс для самостоятельного поиска информации о предках в открытых источниках и архивах, а также ежемесячные встречи с разбором ваших историй и реальной помощью.</div>
-                <p><a href="kod-semi-i-roda.html">Подробнее →</a></p>
+            <div class="code-card" id="family" style="--index: 4;">
+                <div class="code-card__inner">
+                    <h3><a href="kod-semi-i-roda.html">Код семьи и рода</a></h3>
+                    <p>Совершите увлекательное исследование семейных сценариев и найдите опору в родовых историях.</p>
+                    <div class="product-name"><span class="keep">Закрытая группа «Резиденция&nbsp;Анисиной»</span></div>
+                    <div class="details">Курс для самостоятельного поиска информации о предках в открытых источниках и архивах, а также ежемесячные встречи с разбором ваших историй и реальной помощью.</div>
+                    <p><a href="kod-semi-i-roda.html">Подробнее →</a></p>
+                </div>
             </div>
         </div>
     </section>
