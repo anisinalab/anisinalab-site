@@ -473,6 +473,24 @@
             align-items: start;
         }
 
+        .testimonial-grid-2 {
+            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+            max-width: 900px;
+        }
+
+        .testimonial-grid-2 .testimonial-media video {
+            max-height: 520px;
+            width: auto;
+            max-width: 100%;
+            margin: 0 auto;
+        }
+
+        .testimonial-grid-2 figure.testimonial-media:has(video) {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
         .testimonial-media {
             margin: 0;
             background: #fff;
@@ -1022,7 +1040,7 @@
 
     <!-- 4 КОДА (2 В РЯД) -->
     <section id="codes">
-        <h2>4 кода системного благополучия</h2>
+        <h2>4 кода системного благополучия</h2>
         <p class="subtitle">Благополучие в жизни – это система, где всё связано со всем. Мой подход и авторский метод опирается на 4 кода благополучия.</p>
         <p style="font-style: italic; max-width: 800px; margin: -10px auto 30px;">«Здоровье — состояние полного физического, душевного и социального благополучия, а не только отсутствие болезней и физических дефектов» (Всемирная организация здравоохранения).</p>
         
@@ -1074,11 +1092,11 @@
 
     <!-- ЧТО ПОЛЕЗНОГО ЕСТЬ В ЛАБОРАТОРИИ -->
     <section class="perks" id="perks">
-        <h2>Что полезного есть в Лаборатории системного благополучия «Код&nbsp;Анисиной»</h2>
+        <h2>Что полезного есть в Лаборатории<br>системного&nbsp;благополучия «Код&nbsp;Анисиной»</h2>
         <ul class="perks-list">
             <li><strong>Диагностика (прямо на сайте):</strong> за 3 минуты покажет, на какой «код благополучия» стоит обратить внимание в первую очередь и как начать восстановление.</li>
             <li><strong>Бесплатная диагностическая консультация со мной</strong> (около 30 минут), которая открывается после диагностики, и где мы вместе найдём подходящее решение в вашей конкретной ситуации.</li>
-            <li><strong>Еженедельные прямые эфиры и разборы</strong> с возможностью задать вопрос и получить персональную рекомендацию. Информация и темы эфиров регулярно публикуются в телеграм-канале Лаборатории системного благополучия «Код&nbsp;Анисиной». Чтобы быть в курсе и не пропустить интересное, подписывайтесь на канал.</li>
+            <li><strong>Еженедельные прямые эфиры и разборы</strong> с возможностью задать вопрос и получить персональную рекомендацию. Информация и темы эфиров регулярно публикуются в телеграм-канале Лаборатории системного благополучия «Код&nbsp;Анисиной». Чтобы быть в курсе и не пропустить интересное, подписывайтесь на канал.</li>
             <li><strong>Бот «Ада»</strong> поможет определить ваш уровень адаптации и уже ждёт вас в телеграм-канале. Почему важно знать свой уровень адаптации и о научных открытиях, которые легли в основу этих разработок, я тоже рассказываю в телеграм-канале.</li>
             <li><strong>Кейсы и реальные истории женщин,</strong> жизнь которых изменилась благодаря системному подходу и которым удалось избавиться от мигрени или боли в спине, выйти из сложных отношений и абьюза, начать заниматься любимым делом и увеличить доход, наладить отношения с детьми-подростками, и многие другие истории.</li>
             <li><strong>Интересное и неочевидное</strong> и то, о чём обычно не рассказывают: записи некоторых эфиров выложены на канале.</li>
@@ -1094,7 +1112,7 @@
     <section class="testimonials" id="testimonials">
         <h2>Отзывы о методе, который помог собрать свой код благополучия и начать новую жизнь</h2>
         <p class="section-lead">Восстановление здоровья, энергии и гармонии в отношениях через медицину, психологию и исследование семейных сценариев.</p>
-        <div class="testimonial-grid">
+        <div class="testimonial-grid testimonial-grid-2">
             <figure class="testimonial-media">
                 <video controls preload="none" poster="otzyv-video-poster.jpg" playsinline>
                     <source src="otzyv-video.mp4" type="video/mp4">
@@ -1103,18 +1121,8 @@
                 <figcaption>Видеоотзыв</figcaption>
             </figure>
             <figure class="testimonial-media">
-                <div class="img-wrap" onclick="openLightbox('otzyv-1.png')">
-                    <img src="otzyv-1.png" alt="Отзыв: боль в спине стихла в тот же день после работы с Женей" loading="lazy">
-                </div>
-            </figure>
-            <figure class="testimonial-media">
                 <div class="img-wrap" onclick="openLightbox('otzyv-2.png')">
                     <img src="otzyv-2.png" alt="Отзыв о работе с нервной системой и обретении внутренней опоры" loading="lazy">
-                </div>
-            </figure>
-            <figure class="testimonial-media">
-                <div class="img-wrap" onclick="openLightbox('otzyv-3.png')">
-                    <img src="otzyv-3.png" alt="Отзыв об избавлении от мигрени и частых головных болей" loading="lazy">
                 </div>
             </figure>
         </div>
@@ -1133,7 +1141,7 @@
     <!-- БЕГУЩАЯ СТРОКА -->
     <div class="marquee-container">
         <div class="marquee-content">
-            Лаборатория системного благополучия «Код&nbsp;Анисиной» &nbsp;&nbsp;|&nbsp;&nbsp; Код здоровья &nbsp;&nbsp;|&nbsp;&nbsp; Код отношений &nbsp;&nbsp;|&nbsp;&nbsp; Код реализации &nbsp;&nbsp;|&nbsp;&nbsp; Код семьи и рода &nbsp;&nbsp;|&nbsp;&nbsp; Лаборатория системного благополучия «Код&nbsp;Анисиной» &nbsp;&nbsp;|&nbsp;&nbsp; Код здоровья &nbsp;&nbsp;|&nbsp;&nbsp; Код отношений &nbsp;&nbsp;|&nbsp;&nbsp; Код реализации &nbsp;&nbsp;|&nbsp;&nbsp; Код семьи и рода
+            Лаборатория системного благополучия «Код&nbsp;Анисиной» &nbsp;&nbsp;|&nbsp;&nbsp; Код здоровья &nbsp;&nbsp;|&nbsp;&nbsp; Код отношений &nbsp;&nbsp;|&nbsp;&nbsp; Код реализации &nbsp;&nbsp;|&nbsp;&nbsp; Код семьи и рода &nbsp;&nbsp;|&nbsp;&nbsp; Лаборатория системного благополучия «Код&nbsp;Анисиной» &nbsp;&nbsp;|&nbsp;&nbsp; Код здоровья &nbsp;&nbsp;|&nbsp;&nbsp; Код отношений &nbsp;&nbsp;|&nbsp;&nbsp; Код реализации &nbsp;&nbsp;|&nbsp;&nbsp; Код семьи и рода
         </div>
     </div>
 
@@ -1159,7 +1167,7 @@
             <div class="footer-col">
                 <h4>Контакты</h4>
                 <a href="mailto:info@anisinalab.ru" class="email-link">✉ info@anisinalab.ru</a>
-                <div class="contact-item"><span>🌐</span> <span class="brand">Лаборатория системного благополучия «Код&nbsp;Анисиной»</span></div>
+                <div class="contact-item"><span>🌐</span> <span class="brand">Лаборатория системного благополучия «Код&nbsp;Анисиной»</span></div>
             </div>
 
             <div class="footer-col">
@@ -1221,7 +1229,7 @@
     consultClosedLabel: USER.consultClosedLabel || 'Запись временно закрыта',
     consultClosedText: USER.consultClosedText || 'Запись на бесплатную консультацию временно закрыта в связи с отсутствием свободных мест. Подпишитесь на канал, чтобы узнать о возобновлении бесплатных консультаций в числе первых.',
     broadcastText: USER.broadcastText || 'По пятницам в канале проходят бесплатные еженедельные эфиры, где можно задать свой вопрос. Подпишитесь на канал, чтобы не пропустить.',
-    title: USER.title || 'Диагностика системного благополучия',
+    title: USER.title || 'Диагностика системного благополучия',
     lead: USER.lead || '12 утверждений покажут, какой из четырёх кодов сейчас требует внимания больше всего.',
     codes: USER.codes || {}
   };
