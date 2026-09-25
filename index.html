@@ -465,30 +465,22 @@
         }
 
         .testimonial-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
             gap: 24px;
             max-width: 1160px;
             margin: 0 auto 35px;
-            align-items: start;
+            align-items: flex-start;
         }
 
-        .testimonial-grid-2 {
-            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
-            max-width: 900px;
+        .testimonial-grid .testimonial-media {
+            width: 100%;
+            max-width: 480px;
         }
 
-        .testimonial-grid-2 .testimonial-media video {
-            max-height: 520px;
-            width: auto;
-            max-width: 100%;
-            margin: 0 auto;
-        }
-
-        .testimonial-grid-2 figure.testimonial-media:has(video) {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+        .testimonial-grid .testimonial-media video {
+            max-height: 640px;
         }
 
         .testimonial-media {
@@ -1112,7 +1104,7 @@
     <section class="testimonials" id="testimonials">
         <h2>Отзывы о методе, который помог собрать свой код благополучия и начать новую жизнь</h2>
         <p class="section-lead">Восстановление здоровья, энергии и гармонии в отношениях через медицину, психологию и исследование семейных сценариев.</p>
-        <div class="testimonial-grid testimonial-grid-2">
+        <div class="testimonial-grid">
             <figure class="testimonial-media">
                 <video controls preload="none" poster="otzyv-video-poster.jpg" playsinline>
                     <source src="otzyv-video.mp4" type="video/mp4">
@@ -1121,8 +1113,8 @@
                 <figcaption>Видеоотзыв</figcaption>
             </figure>
             <figure class="testimonial-media">
-                <div class="img-wrap" onclick="openLightbox('otzyv-2.png')">
-                    <img src="otzyv-2.png" alt="Отзыв о работе с нервной системой и обретении внутренней опоры" loading="lazy">
+                <div class="img-wrap" onclick="openLightbox('otzyv-2.jpg')">
+                    <img src="otzyv-2.jpg" alt="Отзыв о работе с нервной системой и обретении внутренней опоры" loading="lazy">
                 </div>
             </figure>
         </div>

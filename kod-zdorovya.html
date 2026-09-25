@@ -681,11 +681,15 @@
         .dev-testimonials { margin: 20px auto 40px; max-width: 1000px; }
         .dev-testimonials h2 { font-size: 1.6em; font-weight: 600; color: #1a1a1a; margin-bottom: 30px; }
         .testimonial-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
             gap: 24px;
             margin: 0 auto;
-            align-items: start;
+        }
+        .testimonial-grid .testimonial-media {
+            width: 100%;
+            max-width: 480px;
         }
         .testimonial-media {
             margin: 0;
