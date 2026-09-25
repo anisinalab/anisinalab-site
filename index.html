@@ -300,6 +300,12 @@
             font-size: 1.05em;
         }
 
+        .for-whom-list .hl {
+            font-weight: bold;
+            font-size: 1.2em;
+            color: #1a1a1a;
+        }
+
         /* КАРТОЧКИ КОДОВ - 2 В РЯД */
         .codes-grid {
             display: grid;
@@ -458,30 +464,42 @@
             text-align: center;
         }
 
-        .testimonial-links {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 20px;
-            margin-bottom: 35px;
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+            gap: 24px;
+            max-width: 1000px;
+            margin: 0 auto 35px;
+            align-items: start;
         }
 
-        .testimonial-links a {
+        .testimonial-media {
+            margin: 0;
             background: #fff;
             border-top: 3px solid #B8A9C9;
             border-radius: 10px;
             box-shadow: 0 4px 20px rgba(0,0,0,0.06);
-            padding: 22px 26px;
-            max-width: 280px;
-            color: #7B5C99;
-            text-decoration: none;
-            font-weight: bold;
+            overflow: hidden;
             transition: transform 0.3s, box-shadow 0.3s;
         }
 
-        .testimonial-links a:hover {
+        .testimonial-media:hover {
             transform: translateY(-5px);
             box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+        }
+
+        .testimonial-media img,
+        .testimonial-media video {
+            display: block;
+            width: 100%;
+            height: auto;
+        }
+
+        .testimonial-media figcaption {
+            padding: 10px 14px;
+            font-size: 0.85em;
+            color: #777;
+            text-align: left;
         }
 
         .testimonials-buttons {
@@ -908,9 +926,9 @@
     <!-- ГЛАВНЫЙ ЭКРАН С ФОТО -->
     <section class="hero">
         <div class="hero-text">
-            <h1>Код Анисиной: благополучие во всех сферах жизни через системный подход</h1>
-            <p style="margin-bottom: 15px;">Моя миссия – помочь увидеть глубинные системные связи, которые определяют здоровье, отношения, реализацию и родовую историю.</p>
-            <p>Я помогу найти ваши личные «коды» благополучия и выстроить жизнь по-новому.</p>
+            <h1>Код Анисиной: благополучие<br>во всех сферах жизни<br>через системный подход</h1>
+            <p style="margin-bottom: 15px;"><strong>Моя миссия</strong> – помочь увидеть глубинные системные связи, которые определяют здоровье, отношения, реализацию и родовую историю.</p>
+            <p>Помогу найти ваши личные «коды» благополучия и выстроить жизнь по-новому.</p>
             <div class="hero-buttons">
                 <a href="#diagnostic" class="btn-primary">Пройти бесплатную диагностику за 3 минуты</a>
                 <a href="#codes" class="btn-secondary">Узнать о 4 кодах</a>
@@ -934,11 +952,11 @@
     <section class="for-whom" id="for-whom">
         <h2>Этот сайт для тех, кто хочет:</h2>
         <ol class="for-whom-list">
-            <li><p>Обрести силы и энергию, которые не зависят от погоды, того, сколько часов вы спали или фазы цикла, и хочет оставаться в ресурсе даже в периоды высоких нагрузок.</p></li>
-            <li><p>Понять, о чём сигналит вам головная боль, запор и другие симптомы, и найти истинную причину, а не бороться со следствиями. Мой системный подход для вас, если симптомы не проходят и всё время возвращаются, даже несмотря на то, что вы правильно питаетесь, пьёте воду, регулярно проходите свою норму шагов, уже обошли всех специалистов и сдали анализы.</p></li>
-            <li><p>Наладить отношения и перестать наступать на одни и те же грабли с партнёром, детьми или родителями, увидев скрытые семейные сценарии.</p></li>
-            <li><p>Реализовать потенциал и выйти на новый уровень жизни и дохода, не выгорая при этом. Понять, какие внутренние блоки мешают вам брать своё и получать желаемый доход.</p></li>
-            <li><p>Жить осознанно, а не по инерции, вставая утром с пониманием «зачем», иметь чёткий план действий и чувствовать в себе опору и желание действовать.</p></li>
+            <li><p><span class="hl">Обрести силы и энергию</span>, которые не зависят от погоды, того, сколько часов вы спали или фазы цикла, и хочет оставаться в ресурсе даже в периоды высоких нагрузок.</p></li>
+            <li><p><span class="hl">Понять, о чём сигналит вам головная боль, запор и другие симптомы, и найти истинную причину, а не бороться со следствиями.</span> Мой системный подход для вас, если симптомы не проходят и всё время возвращаются, даже несмотря на то, что вы правильно питаетесь, пьёте воду, регулярно проходите свою норму шагов, уже обошли всех специалистов и сдали анализы.</p></li>
+            <li><p><span class="hl">Наладить отношения</span> и перестать наступать на одни и те же грабли с партнёром, детьми или родителями, увидев скрытые семейные сценарии.</p></li>
+            <li><p><span class="hl">Реализовать свой потенциал и выйти на новый уровень жизни и дохода</span>, не выгорая при этом. Понять, какие внутренние блоки мешают вам брать своё и получать желаемый доход.</p></li>
+            <li><p><span class="hl">Вставать утром с радостью и предвкушением предстоящего</span>, с желанием действовать и иметь чёткий план с пониманием «зачем» и «как».</p></li>
         </ol>
     </section>
 
@@ -1016,10 +1034,23 @@
     <section class="testimonials" id="testimonials">
         <h2>Отзывы о методе, который помог собрать свой код благополучия и начать новую жизнь</h2>
         <p class="section-lead">Восстановление здоровья, энергии и гармонии в отношениях через медицину, психологию и исследование семейных сценариев.</p>
-        <div class="testimonial-links">
-            <a href="https://t.me/anisinalab/42" target="_blank" rel="noopener">Гнев и страх →</a>
-            <a href="https://t.me/anisinalab/43" target="_blank" rel="noopener">Боль в спине, которая «стихла в тот же день» →</a>
-            <a href="https://t.me/anisinalab/45" target="_blank" rel="noopener">Детско-родительские отношения и материнство →</a>
+        <div class="testimonial-grid">
+            <figure class="testimonial-media">
+                <img src="otzyv-1.png" alt="Отзыв: боль в спине стихла в тот же день после работы с Женей" loading="lazy">
+            </figure>
+            <figure class="testimonial-media">
+                <img src="otzyv-2.png" alt="Отзыв об улучшении отношений с дочерью после работы с Женей" loading="lazy">
+            </figure>
+            <figure class="testimonial-media">
+                <img src="otzyv-3.png" alt="Отзыв об избавлении от мигрени и частых головных болей" loading="lazy">
+            </figure>
+            <figure class="testimonial-media">
+                <video controls preload="none" poster="otzyv-video-poster.jpg" playsinline>
+                    <source src="otzyv-video.mp4" type="video/mp4">
+                    Ваш браузер не поддерживает воспроизведение видео.
+                </video>
+                <figcaption>Видеоотзыв</figcaption>
+            </figure>
         </div>
         <div class="testimonials-buttons">
             <a href="#diagnostic" class="btn-primary">Пройти диагностику</a>
