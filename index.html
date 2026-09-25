@@ -466,9 +466,9 @@
 
         .testimonial-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 24px;
-            max-width: 1000px;
+            max-width: 1160px;
             margin: 0 auto 35px;
             align-items: start;
         }
@@ -495,11 +495,71 @@
             height: auto;
         }
 
+        .testimonial-media .img-wrap {
+            position: relative;
+            cursor: zoom-in;
+        }
+
+        .testimonial-media .img-wrap::after {
+            content: "🔍 Увеличить";
+            position: absolute;
+            right: 10px;
+            bottom: 10px;
+            background: rgba(0,0,0,0.6);
+            color: #fff;
+            font-size: 0.8em;
+            padding: 5px 10px;
+            border-radius: 20px;
+            opacity: 0;
+            transition: opacity 0.25s;
+        }
+
+        .testimonial-media .img-wrap:hover::after {
+            opacity: 1;
+        }
+
         .testimonial-media figcaption {
             padding: 10px 14px;
             font-size: 0.85em;
             color: #777;
             text-align: left;
+        }
+
+        /* ЛАЙТБОКС ДЛЯ ОТЗЫВОВ */
+        .lightbox-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(20, 20, 20, 0.88);
+            z-index: 9999;
+            align-items: center;
+            justify-content: center;
+            padding: 30px 20px;
+            cursor: zoom-out;
+        }
+
+        .lightbox-overlay.active {
+            display: flex;
+        }
+
+        .lightbox-overlay img {
+            max-width: 90vw;
+            max-height: 90vh;
+            width: auto;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 10px 50px rgba(0,0,0,0.4);
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 28px;
+            color: #fff;
+            font-size: 2.2em;
+            line-height: 1;
+            cursor: pointer;
+            font-weight: 300;
         }
 
         .testimonials-buttons {
@@ -1036,13 +1096,19 @@
         <p class="section-lead">Восстановление здоровья, энергии и гармонии в отношениях через медицину, психологию и исследование семейных сценариев.</p>
         <div class="testimonial-grid">
             <figure class="testimonial-media">
-                <img src="otzyv-1.png" alt="Отзыв: боль в спине стихла в тот же день после работы с Женей" loading="lazy">
+                <div class="img-wrap" onclick="openLightbox('otzyv-1.png')">
+                    <img src="otzyv-1.png" alt="Отзыв: боль в спине стихла в тот же день после работы с Женей" loading="lazy">
+                </div>
             </figure>
             <figure class="testimonial-media">
-                <img src="otzyv-2.png" alt="Отзыв об улучшении отношений с дочерью после работы с Женей" loading="lazy">
+                <div class="img-wrap" onclick="openLightbox('otzyv-2.png')">
+                    <img src="otzyv-2.png" alt="Отзыв об улучшении отношений с дочерью после работы с Женей" loading="lazy">
+                </div>
             </figure>
             <figure class="testimonial-media">
-                <img src="otzyv-3.png" alt="Отзыв об избавлении от мигрени и частых головных болей" loading="lazy">
+                <div class="img-wrap" onclick="openLightbox('otzyv-3.png')">
+                    <img src="otzyv-3.png" alt="Отзыв об избавлении от мигрени и частых головных болей" loading="lazy">
+                </div>
             </figure>
             <figure class="testimonial-media">
                 <video controls preload="none" poster="otzyv-video-poster.jpg" playsinline>
@@ -1051,6 +1117,12 @@
                 </video>
                 <figcaption>Видеоотзыв</figcaption>
             </figure>
+        </div>
+
+        <!-- Лайтбокс для увеличения отзывов -->
+        <div class="lightbox-overlay" id="lightboxOverlay" onclick="closeLightbox(event)">
+            <span class="lightbox-close" onclick="closeLightbox(event)">&times;</span>
+            <img id="lightboxImg" src="" alt="Отзыв крупным планом">
         </div>
         <div class="testimonials-buttons">
             <a href="#diagnostic" class="btn-primary">Пройти диагностику</a>
@@ -1596,6 +1668,25 @@
                 close();
             });
         })();
+    </script>
+
+    <script>
+        function openLightbox(src) {
+            var overlay = document.getElementById('lightboxOverlay');
+            var img = document.getElementById('lightboxImg');
+            img.src = src;
+            overlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+        function closeLightbox(e) {
+            if (e) e.stopPropagation();
+            var overlay = document.getElementById('lightboxOverlay');
+            overlay.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+        document.addEventListener('keydown', function (e) {
+            if (e.key === 'Escape') closeLightbox();
+        });
     </script>
 </body>
 </html>
