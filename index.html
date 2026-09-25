@@ -246,79 +246,80 @@
             letter-spacing: 1px;
         }
         
-        /* КАРТОЧКИ КОДОВ - СТОПКОЙ, ДРУГ ЗА ДРУГОМ */
+        /* ДЛЯ КОГО ЭТОТ САЙТ */
+        .for-whom {
+            background-color: #fff;
+        }
+
+        .for-whom h2 {
+            text-align: center;
+            margin-bottom: 45px;
+        }
+
+        .for-whom-list {
+            list-style: none;
+            max-width: 850px;
+            margin: 0 auto;
+            counter-reset: forwhom;
+        }
+
+        .for-whom-list li {
+            position: relative;
+            display: flex;
+            gap: 20px;
+            padding: 0 0 28px 0;
+            margin-bottom: 28px;
+            border-bottom: 1px solid #e6e6e6;
+            align-items: flex-start;
+        }
+
+        .for-whom-list li:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .for-whom-list li::before {
+            counter-increment: forwhom;
+            content: counter(forwhom);
+            flex: 0 0 44px;
+            height: 44px;
+            border-radius: 50%;
+            background-color: #B8A9C9;
+            color: #fff;
+            font-family: Georgia, 'Times New Roman', serif;
+            font-size: 1.2em;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .for-whom-list p {
+            margin: 0;
+            color: #444;
+            font-size: 1.05em;
+        }
+
+        /* КАРТОЧКИ КОДОВ - 2 В РЯД */
         .codes-grid {
-            display: block;
-            max-width: 720px;
-            margin: 40px auto 0;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+            margin-top: 40px;
         }
 
-        /* .code-card - невидимая "дорожка": задаёт высоту прокрутки для одной карточки.
-           Сама видимая карточка - это .code-card__inner внутри неё (см. ниже).
-           Запас должен быть заметной долей экрана, иначе фаза "прилипания"
-           пролетает за долю секунды прокрутки и эффект стопки не виден. */
         .code-card {
-            padding-bottom: 18vh;
-        }
-
-        .code-card:last-child {
-            padding-bottom: 4vh;
-        }
-
-        @media (max-width: 768px) {
-            .code-card {
-                padding-bottom: 10vh;
-            }
-        }
-
-        .code-card__inner {
             background: white;
             padding: 35px 30px;
             border-radius: 10px;
             box-shadow: 0 4px 20px rgba(0,0,0,0.06);
-            transition: box-shadow 0.3s;
+            transition: transform 0.3s, box-shadow 0.3s;
             border-top: 3px solid #B8A9C9;
-            position: sticky;
-            top: 96px;
         }
 
-        .code-card:nth-child(2) .code-card__inner { top: 118px; }
-        .code-card:nth-child(3) .code-card__inner { top: 140px; }
-        .code-card:nth-child(4) .code-card__inner { top: 162px; }
-
-        .code-card__inner:hover {
+        .code-card:hover {
+            transform: translateY(-5px);
             box-shadow: 0 8px 30px rgba(0,0,0,0.12);
-        }
-
-        /* Эффект стопки: карточка чуть уменьшается, когда её накрывает следующая.
-           Технология и формулы - по демо scroll-driven-animations.style/demos/stacking-cards.
-           Работает в Chrome/Edge/Opera; в остальных браузерах карточки просто
-           складываются друг на друга благодаря position: sticky, без уменьшения. */
-        @supports (animation-timeline: view()) {
-            .codes-grid {
-                view-timeline-name: --al-cards-scroll;
-            }
-
-            .code-card {
-                --al-index0: calc(var(--index) - 1);
-                --al-reverse-index: calc(4 - var(--al-index0));
-            }
-
-            .code-card__inner {
-                --al-start-range: calc(var(--al-index0) / 4 * 100%);
-                --al-end-range: calc(var(--index) / 4 * 100%);
-                animation: al-card-scale linear forwards;
-                animation-timeline: --al-cards-scroll;
-                animation-range: exit-crossing var(--al-start-range) exit-crossing var(--al-end-range);
-            }
-
-            @keyframes al-card-scale {
-                to { transform: scale(calc(1.1 - 0.1 * var(--al-reverse-index))); }
-            }
-        }
-
-        @media (prefers-reduced-motion: reduce) {
-            .code-card__inner { animation: none !important; }
         }
 
         .code-card h3 {
@@ -397,6 +398,99 @@
             text-align: center;
         }
         
+        /* ЧТО ПОЛЕЗНОГО ЕСТЬ В ЛАБОРАТОРИИ */
+        .perks {
+            background-color: #fff;
+        }
+
+        .perks h2 {
+            text-align: center;
+            margin-bottom: 45px;
+            max-width: 850px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .perks-list {
+            list-style: none;
+            max-width: 850px;
+            margin: 0 auto 45px;
+        }
+
+        .perks-list li {
+            position: relative;
+            padding-left: 34px;
+            margin-bottom: 22px;
+            color: #444;
+            font-size: 1.05em;
+        }
+
+        .perks-list li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            top: 1px;
+            color: #2c5f2d;
+            font-weight: bold;
+            font-size: 1.15em;
+        }
+
+        .perks-buttons {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        /* ОТЗЫВЫ */
+        .testimonials {
+            background-color: #F0F7F0;
+            text-align: center;
+        }
+
+        .testimonials h2 {
+            text-align: center;
+        }
+
+        .testimonials > p.section-lead {
+            max-width: 750px;
+            margin: 0 auto 40px;
+            text-align: center;
+        }
+
+        .testimonial-links {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 35px;
+        }
+
+        .testimonial-links a {
+            background: #fff;
+            border-top: 3px solid #B8A9C9;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+            padding: 22px 26px;
+            max-width: 280px;
+            color: #7B5C99;
+            text-decoration: none;
+            font-weight: bold;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .testimonial-links a:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+        }
+
+        .testimonials-buttons {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
         /* БЕГУЩАЯ СТРОКА */
         .marquee-container {
             background-color: #B8A9C9;
@@ -607,7 +701,11 @@
             section h2 {
                 font-size: 1.7em;
             }
-            
+
+            .codes-grid {
+                grid-template-columns: 1fr;
+            }
+
 .footer-content {
                 grid-template-columns: 1fr;
             }
@@ -645,7 +743,7 @@
            ===================================================================== */
         @supports (animation-timeline: view()) {
             .hero-text, .hero-photo, .about-content,
-            #codes h2, #codes .subtitle,
+            #codes h2, #codes .subtitle, .code-card,
             .diagnostic h2, .diagnostic p, .diagnostic > a, .diagnostic .alq {
                 animation: al-reveal linear both;
                 animation-timeline: view();
@@ -660,7 +758,7 @@
 
         @media (prefers-reduced-motion: reduce) {
             .hero-text, .hero-photo, .about-content,
-            #codes h2, #codes .subtitle,
+            #codes h2, #codes .subtitle, .code-card,
             .diagnostic h2, .diagnostic p, .diagnostic > a, .diagnostic .alq {
                 animation: none !important;
             }
@@ -756,28 +854,42 @@
         .alq .alq__opt { border-radius: 8px; }
         .diagnostic .alq[data-al-direct] { margin-top: 30px; }
     </style>
-    <!-- Yandex.Metrika counter -->
+    <!-- Yandex.Metrika: запускается только после согласия на cookie -->
     <script type="text/javascript">
-        (function(m,e,t,r,i,k,a){
-            m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
-            m[i].l=1*new Date();
-            for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
-            k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
-        })(window, document, "script", "https://mc.yandex.ru/metrika/tag.js?id=112880124", "ym");
+        (function () {
+            function loadMetrika() {
+                if (window.__alMetrikaLoaded) return;
+                window.__alMetrikaLoaded = true;
+                (function(m,e,t,r,i,k,a){
+                    m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+                    m[i].l=1*new Date();
+                    for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+                    k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+                })(window, document, "script", "https://mc.yandex.ru/metrika/tag.js?id=112880124", "ym");
 
-        ym(112880124, "init", {
-            ssr: true,
-            clickmap: true,
-            referrer: document.referrer,
-            url: location.href,
-            accurateTrackBounce: true,
-            trackLinks: true
-        });
+                ym(112880124, "init", {
+                    ssr: true,
+                    clickmap: true,
+                    referrer: document.referrer,
+                    url: location.href,
+                    accurateTrackBounce: true,
+                    trackLinks: true
+                });
+
+                var pixel = document.createElement("img");
+                pixel.src = "https://mc.yandex.ru/watch/112880124";
+                pixel.alt = "";
+                pixel.style.cssText = "position:absolute;left:-9999px;";
+                document.body.appendChild(pixel);
+            }
+            window.__alLoadMetrika = loadMetrika;
+            try {
+                if (localStorage.getItem("al_cookie_consent") === "accepted") loadMetrika();
+            } catch (e) {}
+        })();
     </script>
-    <!-- /Yandex.Metrika counter -->
 </head>
 <body>
-    <noscript><div><img src="https://mc.yandex.ru/watch/112880124" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
 
     <!-- ШАПКА -->
     <header>
@@ -796,11 +908,11 @@
     <!-- ГЛАВНЫЙ ЭКРАН С ФОТО -->
     <section class="hero">
         <div class="hero-text">
-            <h1><span class="brand">Лаборатория системного благополучия «Код&nbsp;Анисиной»</span></h1>
-            <p style="margin-bottom: 15px;">Помогаю найти причины и разрешить проблемы со здоровьем, в отношениях и реализации.</p>
-            <p>Благополучие – системно. Все связано со всем.</p>
+            <h1>Код Анисиной: благополучие во всех сферах жизни через системный подход</h1>
+            <p style="margin-bottom: 15px;">Моя миссия – помочь увидеть глубинные системные связи, которые определяют здоровье, отношения, реализацию и родовую историю.</p>
+            <p>Я помогу найти ваши личные «коды» благополучия и выстроить жизнь по-новому.</p>
             <div class="hero-buttons">
-                <a href="#diagnostic" class="btn-primary">Пройти диагностику</a>
+                <a href="#diagnostic" class="btn-primary">Пройти бесплатную диагностику за 3 минуты</a>
                 <a href="#codes" class="btn-secondary">Узнать о 4 кодах</a>
             </div>
         </div>
@@ -813,56 +925,62 @@
     <section class="about" id="about">
         <div class="about-content">
             <p>Восстановление здоровья, энергии и гармонии в отношениях через медицину, психологию и исследование семейных сценариев.</p>
-            <p>Моя миссия – помочь вам увидеть глубинные системные связи, которые определяют ваше здоровье, отношения, реализацию и родовую историю. Я помогу найти ваши личные «коды» благополучия и выстроить жизнь по-новому.</p>
   <p><strong>Евгения Анисина</strong> – специалист по системному благополучию и просемейный психолог. <span class="keep">15&nbsp;лет в доказательной медицине и психологии.</span></p>
             <div class="slogan"><span class="nb">Моя жизнь.</span> <span class="nb">Мои правила.</span></div>
         </div>
     </section>
 
+    <!-- ДЛЯ КОГО ЭТОТ САЙТ -->
+    <section class="for-whom" id="for-whom">
+        <h2>Этот сайт для тех, кто хочет:</h2>
+        <ol class="for-whom-list">
+            <li><p>Обрести силы и энергию, которые не зависят от погоды, того, сколько часов вы спали или фазы цикла, и хочет оставаться в ресурсе даже в периоды высоких нагрузок.</p></li>
+            <li><p>Понять, о чём сигналит вам головная боль, запор и другие симптомы, и найти истинную причину, а не бороться со следствиями. Мой системный подход для вас, если симптомы не проходят и всё время возвращаются, даже несмотря на то, что вы правильно питаетесь, пьёте воду, регулярно проходите свою норму шагов, уже обошли всех специалистов и сдали анализы.</p></li>
+            <li><p>Наладить отношения и перестать наступать на одни и те же грабли с партнёром, детьми или родителями, увидев скрытые семейные сценарии.</p></li>
+            <li><p>Реализовать потенциал и выйти на новый уровень жизни и дохода, не выгорая при этом. Понять, какие внутренние блоки мешают вам брать своё и получать желаемый доход.</p></li>
+            <li><p>Жить осознанно, а не по инерции, вставая утром с пониманием «зачем», иметь чёткий план действий и чувствовать в себе опору и желание действовать.</p></li>
+        </ol>
+    </section>
+
     <!-- 4 КОДА (2 В РЯД) -->
     <section id="codes">
         <h2>4 кода системного благополучия</h2>
-        <p class="subtitle">Выберите направление, которое откликается вам больше всего</p>
+        <p class="subtitle">Благополучие в жизни – это система, где всё связано со всем. Мой подход и авторский метод опирается на 4 кода благополучия.</p>
+        <p style="font-style: italic; max-width: 800px; margin: -10px auto 30px;">«Здоровье — состояние полного физического, душевного и социального благополучия, а не только отсутствие болезней и физических дефектов» (Всемирная организация здравоохранения).</p>
         
         <div class="codes-grid">
-            <div class="code-card" id="health" style="--index: 1;">
-                <div class="code-card__inner">
-                    <h3><a href="kod-zdorovya.html">Код здоровья</a></h3>
-                    <p>Верните себе энергию и жизненную силу через системную работу с телом и психикой.</p>
-                    <div class="product-name">Мастер-группа «Второе дыхание»</div>
-                    <div class="details">6 недель · 10-12 человек · личное сопровождение</div>
-                    <p><a href="kod-zdorovya.html">Подробнее →</a></p>
-                </div>
+            <div class="code-card" id="health">
+                <h3><a href="kod-zdorovya.html">Код здоровья</a></h3>
+                <p>Верните себе энергию и жизненную силу через системную работу с телом и психикой. Хроническая усталость, боли и лишний вес уйдут, если работать с их истинными причинами.</p>
+                <div class="product-name">Мастер-группа «Второе дыхание»</div>
+                <div class="details">6 недель · 10-12 человек · личное сопровождение</div>
+                <p><a href="kod-zdorovya.html">Подробнее →</a></p>
             </div>
 
-            <div class="code-card" id="relationships" style="--index: 2;">
-                <div class="code-card__inner">
-                    <h3><a href="kod-otnosheniy.html">Код отношений</a></h3>
-                    <p>Начните менять жизнь к лучшему уже сейчас. Решение всегда найдётся, если знать, где искать.</p>
-                    <div class="product-name">10-дневное сопровождение</div>
-                    <div class="details">С моим авторским методом изменения к лучшему неизбежны, с гарантией результата менее чем за 10 дней. Проверим?</div>
-                    <p><a href="#diagnostic">Пройти диагностику →</a></p>
-                </div>
+            <div class="code-card" id="relationships">
+                <h3><a href="kod-otnosheniy.html">Код отношений</a></h3>
+                <p>Устали жить как раньше, хотите перемен, но не знаете, что делать и с чего начать? Изменения к лучшему неизбежны, и решение даже самых сложных ситуаций есть, если знать, где искать.</p>
+                <div class="product-name">10-дневное сопровождение «Переход»</div>
+                <div class="details">Авторская методика · быстрый и стабильный результат</div>
+                <p><a href="kod-otnosheniy.html">Подробнее →</a></p>
             </div>
 
-            <div class="code-card" id="realization" style="--index: 3;">
-                <div class="code-card__inner">
-                    <h3><a href="kod-realizacii.html">Код реализации</a></h3>
-                    <p>Монетизируйте свою экспертизу и создайте устойчивый доход.</p>
-                    <div class="product-name">«Продвижение онлайн под ключ»</div>
-                    <div class="details">6 недель · эффективные инструменты · соберём сайт · настроим трафик</div>
-                    <p><a href="kod-realizacii.html">Подробнее →</a></p>
-                </div>
+            <div class="code-card" id="realization">
+                <h3><a href="kod-realizacii.html">Код реализации</a></h3>
+                <p>Инструменты, которые помогут прийти к финансовым целям и профессиональной реализации без выгорания и потери бюджетов на неэффективных решениях. Создайте стабильный доход на своей экспертизе и занимайтесь любимым делом в удовольствие.</p>
+                <div class="product-name">Курс «Прибыльная практика без выгорания»</div>
+                <div class="details">От хаоса к системе. Автоматизация · ИИ-агенты · сайт · трафик · масштабирование</div>
+                <p><a href="kod-realizacii.html">Подробнее →</a></p>
             </div>
 
-            <div class="code-card" id="family" style="--index: 4;">
-                <div class="code-card__inner">
-                    <h3><a href="kod-semi-i-roda.html">Код семьи и рода</a></h3>
-                    <p>Совершите увлекательное исследование семейных сценариев и найдите опору в родовых историях.</p>
-                    <div class="product-name"><span class="keep">Закрытая группа «Резиденция&nbsp;Анисиной»</span></div>
-                    <div class="details">Курс для самостоятельного поиска информации о предках в открытых источниках и архивах, а также ежемесячные встречи с разбором ваших историй и реальной помощью.</div>
-                    <p><a href="kod-semi-i-roda.html">Подробнее →</a></p>
-                </div>
+            <div class="code-card" id="family">
+                <h3><a href="kod-semi-i-roda.html">Код семьи и рода</a></h3>
+                <p>Совершите увлекательное исследование семейных сценариев, найдите опору в родовой истории, исцелите травмы предков и передайте детям здоровое наследие.</p>
+                <div class="product-name"><span class="keep">Закрытая группа «Резиденция&nbsp;Анисиной»</span></div>
+                <div class="details">Ежемесячные встречи с разбором ваших историй и реальной помощью.</div>
+                <div class="product-name">Курс «Живое наследие»</div>
+                <div class="details">Как самостоятельно найти информацию о предках в архивах и открытых источниках и собрать свою родовую историю.</div>
+                <p><a href="kod-semi-i-roda.html">Подробнее →</a></p>
             </div>
         </div>
     </section>
@@ -874,6 +992,39 @@
         <a href="zapis.html?source=consultation" class="btn-primary" data-al-start>Пройти диагностику</a>
         <noscript><p>Для теста нужен включённый JavaScript. Запишитесь на консультацию по кнопке выше.</p></noscript>
         <div class="alq alq--light" data-al-quiz data-al-direct hidden></div>
+    </section>
+
+    <!-- ЧТО ПОЛЕЗНОГО ЕСТЬ В ЛАБОРАТОРИИ -->
+    <section class="perks" id="perks">
+        <h2>Что полезного есть в Лаборатории системного благополучия «Код&nbsp;Анисиной»</h2>
+        <ul class="perks-list">
+            <li><strong>Диагностика (прямо на сайте):</strong> за 3 минуты покажет, на какой «код благополучия» стоит обратить внимание в первую очередь и как начать восстановление.</li>
+            <li><strong>Бесплатная диагностическая консультация со мной</strong> (около 30 минут), которая открывается после диагностики, и где мы вместе найдём подходящее решение в вашей конкретной ситуации.</li>
+            <li><strong>Еженедельные прямые эфиры и разборы</strong> с возможностью задать вопрос и получить персональную рекомендацию. Информация и темы эфиров регулярно публикуются в телеграм-канале Лаборатории системного благополучия «Код&nbsp;Анисиной». Чтобы быть в курсе и не пропустить интересное, подписывайтесь на канал.</li>
+            <li><strong>Бот «Ада»</strong> поможет определить ваш уровень адаптации и уже ждёт вас в телеграм-канале. Почему важно знать свой уровень адаптации и о научных открытиях, которые легли в основу этих разработок, я тоже рассказываю в телеграм-канале.</li>
+            <li><strong>Кейсы и реальные истории женщин,</strong> жизнь которых изменилась благодаря системному подходу и которым удалось избавиться от мигрени или боли в спине, выйти из сложных отношений и абьюза, начать заниматься любимым делом и увеличить доход, наладить отношения с детьми-подростками, и многие другие истории.</li>
+            <li><strong>Интересное и неочевидное</strong> и то, о чём обычно не рассказывают: записи некоторых эфиров выложены на канале.</li>
+            <li><strong>Информация о предстоящих проектах,</strong> курсах, семинарах.</li>
+        </ul>
+        <div class="perks-buttons">
+            <a href="#diagnostic" class="btn-primary">Пройти диагностику</a>
+            <a href="https://t.me/anisinalab" class="btn-secondary" target="_blank" rel="noopener">Подписаться в телеграм канал</a>
+        </div>
+    </section>
+
+    <!-- ОТЗЫВЫ -->
+    <section class="testimonials" id="testimonials">
+        <h2>Отзывы о методе, который помог собрать свой код благополучия и начать новую жизнь</h2>
+        <p class="section-lead">Восстановление здоровья, энергии и гармонии в отношениях через медицину, психологию и исследование семейных сценариев.</p>
+        <div class="testimonial-links">
+            <a href="https://t.me/anisinalab/42" target="_blank" rel="noopener">Гнев и страх →</a>
+            <a href="https://t.me/anisinalab/43" target="_blank" rel="noopener">Боль в спине, которая «стихла в тот же день» →</a>
+            <a href="https://t.me/anisinalab/45" target="_blank" rel="noopener">Детско-родительские отношения и материнство →</a>
+        </div>
+        <div class="testimonials-buttons">
+            <a href="#diagnostic" class="btn-primary">Пройти диагностику</a>
+            <a href="https://t.me/anisinalab" class="btn-secondary" target="_blank" rel="noopener">Подписаться в телеграм канал</a>
+        </div>
     </section>
 
     <!-- БЕГУЩАЯ СТРОКА -->
@@ -1356,8 +1507,11 @@
         });
     </script>
     <div id="cookie-banner" class="cookie-banner" hidden role="region" aria-label="Уведомление об использовании cookie">
-        <p>Мы используем cookie-файлы, чтобы сайт работал корректно и был удобным для вас. Продолжая пользоваться сайтом, вы соглашаетесь с их использованием.</p>
-        <button type="button" id="cookie-ok" class="cookie-banner__btn">OK</button>
+        <p>Мы используем cookie-файлы для работы сайта и cookie для аналитики посещений (Яндекс Метрика). Аналитические cookie мы устанавливаем только с вашего согласия.</p>
+        <div class="cookie-banner__actions">
+            <button type="button" id="cookie-decline" class="cookie-banner__btn cookie-banner__btn--ghost">Отклонить</button>
+            <button type="button" id="cookie-accept" class="cookie-banner__btn cookie-banner__btn--solid">Принять</button>
+        </div>
     </div>
     <style>
         .cookie-banner {
@@ -1371,26 +1525,44 @@
             transition: opacity 0.3s ease, transform 0.3s ease;
         }
         .cookie-banner.is-visible { opacity: 1; transform: none; }
-        .cookie-banner p { margin: 0; max-width: 760px; color: #333; font-family: Georgia, 'Times New Roman', serif; font-size: 0.95em; line-height: 1.5; text-align: left; }
-        .cookie-banner__btn { flex: none; padding: 10px 28px; border: 1px solid #999; border-radius: 5px; background: #fff; color: #333; font: inherit; font-weight: bold; cursor: pointer; }
-        .cookie-banner__btn:hover { background: #e6e6e6; }
+        .cookie-banner p { margin: 0; max-width: 640px; color: #333; font-family: Georgia, 'Times New Roman', serif; font-size: 0.95em; line-height: 1.5; text-align: left; }
+        .cookie-banner__actions { display: flex; flex: none; gap: 12px; }
+        .cookie-banner__btn { flex: none; padding: 10px 26px; border-radius: 5px; font: inherit; font-weight: bold; cursor: pointer; }
+        .cookie-banner__btn--ghost { border: 1px solid #999; background: #fff; color: #333; }
+        .cookie-banner__btn--ghost:hover { background: #e6e6e6; }
+        .cookie-banner__btn--solid { border: 1px solid #2c5f2d; background: #2c5f2d; color: #fff; }
+        .cookie-banner__btn--solid:hover { background: #1e4220; }
+        @media (max-width: 640px) {
+            .cookie-banner { flex-direction: column; align-items: stretch; text-align: center; }
+            .cookie-banner__actions { justify-content: stretch; }
+            .cookie-banner__btn { flex: 1; }
+        }
         @media (prefers-reduced-motion: reduce) { .cookie-banner { transition: none; } }
     </style>
     <script>
         (function () {
-            var KEY = 'al_cookie_notice_seen';
-            var seen = false;
-            try { seen = localStorage.getItem(KEY) === '1'; } catch (e) {}
-            if (seen) return;
+            var KEY = 'al_cookie_consent';
+            var saved = null;
+            try { saved = localStorage.getItem(KEY); } catch (e) {}
+            if (saved === 'accepted' || saved === 'declined') return;
             var banner = document.getElementById('cookie-banner');
-            var btn = document.getElementById('cookie-ok');
-            if (!banner || !btn) return;
+            var accept = document.getElementById('cookie-accept');
+            var decline = document.getElementById('cookie-decline');
+            if (!banner || !accept || !decline) return;
             banner.hidden = false;
             requestAnimationFrame(function () { banner.classList.add('is-visible'); });
-            btn.addEventListener('click', function () {
+            function close() {
                 banner.classList.remove('is-visible');
-                try { localStorage.setItem(KEY, '1'); } catch (e) {}
                 setTimeout(function () { banner.hidden = true; }, 300);
+            }
+            accept.addEventListener('click', function () {
+                try { localStorage.setItem(KEY, 'accepted'); } catch (e) {}
+                if (window.__alLoadMetrika) window.__alLoadMetrika();
+                close();
+            });
+            decline.addEventListener('click', function () {
+                try { localStorage.setItem(KEY, 'declined'); } catch (e) {}
+                close();
             });
         })();
     </script>
