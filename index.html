@@ -13,16 +13,20 @@
         }
         
         body {
-            font-family: 'Georgia', 'Times New Roman', serif;
+            font-family: 'Manrope', 'Arial', sans-serif;
+            font-size: 17px;
+            font-weight: 500;
             line-height: 1.7;
             color: #2c2c2c;
             background-color: #E8F5E9;
             overflow-x: hidden;
         }
+
+        strong, b { font-weight: 700; }
         
         /* ШАПКА - ЛИЛОВАЯ */
         header {
-            background-color: #B8A9C9;
+            background-color: #8E5FA8;
             padding: 20px 0;
             box-shadow: 0 2px 15px rgba(0,0,0,0.1);
             position: sticky;
@@ -42,8 +46,8 @@
         }
         
         .logo {
-            font-size: 1.2em;
-            font-weight: bold;
+            font-size: 1.25em;
+            font-weight: 700;
             color: #fff;
             letter-spacing: 0.5px;
         }
@@ -69,11 +73,13 @@
         
         .cta-button {
             background-color: #fff;
-            color: #B8A9C9 !important;
-            padding: 10px 20px;
+            color: #6B3FA0 !important;
+            padding: 12px 24px;
             border-radius: 5px;
             text-decoration: none;
-            font-weight: bold;
+            font-weight: 700;
+            font-size: 1.05em;
+            letter-spacing: 0.2px;
             transition: background-color 0.3s;
         }
         
@@ -134,18 +140,27 @@
         }
         
         .hero h1 {
-            font-size: 2.8em;
-            margin-bottom: 25px;
+            font-size: 3em;
+            margin-bottom: 12px;
             color: #1a1a1a;
             line-height: 1.2;
-            font-weight: normal;
+            font-weight: 800;
+        }
+
+        .hero-subtitle {
+            font-size: 1.5em;
+            font-weight: 700;
+            color: #6B3FA0;
+            line-height: 1.3;
+            margin-bottom: 25px;
         }
         
         .hero p {
-            font-size: 1.15em;
+            font-size: 1.18em;
             margin-bottom: 35px;
-            color: #555;
+            color: #444;
             max-width: 600px;
+            font-weight: 500;
         }
         
         .hero-buttons {
@@ -155,34 +170,38 @@
         }
         
         .btn-primary {
-            background-color: #2c5f2d;
+            background-color: #1F7A3D;
             color: white;
-            padding: 15px 35px;
+            padding: 16px 36px;
             border-radius: 5px;
             text-decoration: none;
-            font-size: 1.05em;
+            font-size: 1.1em;
+            font-weight: 700;
+            letter-spacing: 0.2px;
             transition: background-color 0.3s;
             display: inline-block;
         }
         
         .btn-primary:hover {
-            background-color: #1e4220;
+            background-color: #14532D;
         }
         
         .btn-secondary {
             background-color: transparent;
-            color: #2c5f2d;
-            padding: 15px 35px;
+            color: #1F7A3D;
+            padding: 16px 36px;
             border-radius: 5px;
             text-decoration: none;
-            font-size: 1.05em;
-            border: 2px solid #2c5f2d;
+            font-size: 1.1em;
+            font-weight: 700;
+            letter-spacing: 0.2px;
+            border: 2px solid #1F7A3D;
             transition: all 0.3s;
             display: inline-block;
         }
         
         .btn-secondary:hover {
-            background-color: #2c5f2d;
+            background-color: #1F7A3D;
             color: white;
         }
         
@@ -194,24 +213,26 @@
         }
         
         section h2 {
-            font-size: 2.2em;
+            font-size: 2.5em;
             color: #1a1a1a;
             margin-bottom: 20px;
-            font-weight: normal;
+            font-weight: 700;
         }
         
         section .subtitle {
-            font-size: 1.1em;
-            color: #2c5f2d;
+            font-size: 1.15em;
+            color: #1F7A3D;
             margin-bottom: 30px;
             font-style: italic;
+            font-weight: 600;
         }
         
         section p {
-            font-size: 1.05em;
-            color: #444;
+            font-size: 1.12em;
+            color: #3a3a3a;
             margin-bottom: 20px;
             max-width: 800px;
+            font-weight: 500;
         }
         
         /* ОБО МНЕ */
@@ -240,7 +261,7 @@
         .slogan {
             text-align: center;
             font-size: 1.5em;
-            color: #2c5f2d;
+            color: #1F7A3D;
             font-style: italic;
             margin-top: 40px;
             letter-spacing: 1px;
@@ -285,9 +306,9 @@
             flex: 0 0 44px;
             height: 44px;
             border-radius: 50%;
-            background-color: #B8A9C9;
+            background-color: #8E5FA8;
             color: #fff;
-            font-family: Georgia, 'Times New Roman', serif;
+            font-family: 'Manrope', 'Arial', sans-serif;
             font-size: 1.2em;
             display: flex;
             align-items: center;
@@ -320,7 +341,7 @@
             border-radius: 10px;
             box-shadow: 0 4px 20px rgba(0,0,0,0.06);
             transition: transform 0.3s, box-shadow 0.3s;
-            border-top: 3px solid #B8A9C9;
+            border-top: 3px solid #8E5FA8;
         }
 
         .code-card:hover {
@@ -330,7 +351,7 @@
 
         .code-card h3 {
             font-size: 1.4em;
-            color: #7B5C99;
+            color: #6B3FA0;
             margin-bottom: 15px;
             font-weight: normal;
         }
@@ -355,16 +376,16 @@
         }
         
         .code-card a {
-            color: #7B5C99;
+            color: #6B3FA0;
             text-decoration: none;
             font-weight: bold;
-            border-bottom: 1px solid #7B5C99;
+            border-bottom: 1px solid #6B3FA0;
             padding-bottom: 2px;
         }
         
         .code-card a:hover {
-            color: #5E4477;
-            border-bottom-color: #5E4477;
+            color: #4A2A66;
+            border-bottom-color: #4A2A66;
         }
 
         .code-card h3 a {
@@ -381,7 +402,7 @@
 
         .code-card p.club-notice {
             background: #F3EFF8;
-            border-left: 3px solid #7B5C99;
+            border-left: 3px solid #6B3FA0;
             border-radius: 6px;
             padding: 12px 14px;
             color: #444;
@@ -392,6 +413,12 @@
         .diagnostic {
             background-color: #F0F7F0;
             text-align: center;
+        }
+
+        .diagnostic--compact {
+            padding: 0;
+            max-width: none;
+            background-color: transparent;
         }
         
         .diagnostic h2 {
@@ -436,7 +463,7 @@
             position: absolute;
             left: 0;
             top: 1px;
-            color: #2c5f2d;
+            color: #1F7A3D;
             font-weight: bold;
             font-size: 1.15em;
         }
@@ -486,7 +513,7 @@
         .testimonial-media {
             margin: 0;
             background: #fff;
-            border-top: 3px solid #B8A9C9;
+            border-top: 3px solid #8E5FA8;
             border-radius: 10px;
             box-shadow: 0 4px 20px rgba(0,0,0,0.06);
             overflow: hidden;
@@ -581,7 +608,7 @@
 
         /* БЕГУЩАЯ СТРОКА */
         .marquee-container {
-            background-color: #B8A9C9;
+            background-color: #8E5FA8;
             color: white;
             padding: 15px 0;
             overflow: hidden;
@@ -606,7 +633,7 @@
         
         /* ФУТЕР - ЛИЛОВЫЙ */
         footer {
-            background-color: #B8A9C9;
+            background-color: #8E5FA8;
             color: #fff;
             padding: 60px 20px 30px;
         }
@@ -681,7 +708,7 @@
         .footer-cta-btn {
             display: inline-block;
             background-color: #fff;
-            color: #B8A9C9;
+            color: #8E5FA8;
             padding: 15px 35px;
             border-radius: 5px;
             text-decoration: none;
@@ -925,7 +952,7 @@
 .alq .alq__btn--off,.alq .alq__btn--off:hover{background:transparent;color:var(--alq-fg-3);border:2px dashed var(--alq-line);cursor:not-allowed;opacity:.85}
 
 /* светлая тема (для сайта со светлым фоном) */
-.alq.alq--light{--alq-bg:#FFFFFF;--alq-fg:#2c2c2c;--alq-fg-2:#4d4d4d;--alq-fg-3:#666666;--alq-line:#9d90b2;--alq-line-2:#e4dfec;--alq-track:#e6e0ee;--alq-sel:#f3eff8;--alq-on-accent:#FFFFFF;--alq-accent:#2c5f2d;border-radius:10px;border-top:3px solid #B8A9C9;box-shadow:0 4px 20px rgba(0,0,0,.06)}
+.alq.alq--light{--alq-bg:#FFFFFF;--alq-fg:#2c2c2c;--alq-fg-2:#4d4d4d;--alq-fg-3:#666666;--alq-line:#9d90b2;--alq-line-2:#e4dfec;--alq-track:#e6e0ee;--alq-sel:#f3eff8;--alq-on-accent:#FFFFFF;--alq-accent:#1F7A3D;border-radius:10px;border-top:3px solid #8E5FA8;box-shadow:0 4px 20px rgba(0,0,0,.06)}
 .alq.alq--light .alq__title,.alq.alq--light .alq__h3{color:#1a1a1a}
 
 @media (prefers-reduced-motion:reduce){
@@ -934,7 +961,7 @@
 
         /* ===== ТЕСТ-ДИАГНОСТИКА: подгонка под стили сайта ===== */
         .alq { --al-font-body: Georgia, 'Times New Roman', serif; --al-font-display: Georgia, 'Times New Roman', serif; }
-        .diagnostic .diag-step { margin: 0 auto 24px; color: #2c5f2d; font-style: italic; }
+        .diagnostic .diag-step { margin: 0 auto 24px; color: #1F7A3D; font-style: italic; }
         .diagnostic .diag-after { margin-top: 48px; }
         section[id] { scroll-margin-top: 90px; }
         #diagnostic h2 { scroll-margin-top: 110px; }
@@ -976,6 +1003,9 @@
             } catch (e) {}
         })();
     </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
 
@@ -996,7 +1026,9 @@
     <!-- ГЛАВНЫЙ ЭКРАН С ФОТО -->
     <section class="hero">
         <div class="hero-text">
-            <h1>Лаборатория системного благополучия «Код Анисиной»: благополучие<br>во всех сферах жизни<br>через системный подход</h1>
+            <h1>Лаборатория системного&nbsp;благополучия «Код&nbsp;Анисиной»</h1>
+            <p class="hero-subtitle">благополучие<br>во всех сферах жизни<br>через системный подход</p>
+            <p style="margin-bottom: 15px;"><strong>Моя миссия</strong> – помочь увидеть глубинные системные связи, которые определяют здоровье, отношения, реализацию и родовую историю.</p>
             <p>Помогу найти ваши личные «коды» благополучия и выстроить жизнь по-новому.</p>
             <div class="hero-buttons">
                 <a href="#diagnostic" class="btn-primary">Пройти бесплатную диагностику за 3 минуты</a>
@@ -1011,7 +1043,7 @@
     <!-- ОБО МНЕ -->
     <section class="about" id="about">
         <div class="about-content">
-            <p>Оздоровление организма, гармония в отношениях, силы и энергия через психологию, медицину и исследование семейных сценариев.</p>
+            <p>Восстановление здоровья, энергии и гармонии в отношениях через медицину, психологию и исследование семейных сценариев.</p>
   <p><strong>Евгения Анисина</strong> – специалист по системному благополучию и просемейный психолог. <span class="keep">15&nbsp;лет в доказательной медицине и психологии.</span></p>
             <div class="slogan"><span class="nb">Моя жизнь.</span> <span class="nb">Мои правила.</span></div>
         </div>
@@ -1021,26 +1053,24 @@
     <section class="for-whom" id="for-whom">
         <h2>Этот сайт для тех, кто хочет:</h2>
         <ol class="for-whom-list">
-            <li><p><span class="hl">Обрести силы и энергию</span>, которые не зависят от погоды, того, сколько часов вы спали или фазы цикла, и хочет оставаться в ресурсе даже в периоды высоких нагрузок.</p></li>
-            <li><p><span class="hl">Понять, о чём сигналит вам симптом и как найти его истинную причину, а не бороться со следствиями.</p></li>
-            <li><p><span class="hl">Наладить отношения</span> и перестать наступать на одни и те же грабли с партнёром, детьми или родителями, увидев скрытые семейные связи.</p></li>
-            <li><p><span class="hl">Реализовать свой потенциал и выйти на новый уровень жизни и дохода</span>, не выгорая при этом. Понять, мешает вам брать своё.</p></li>
-            <li><p><span class="hl">Вставать утром с радостью и ясностью, спредвкушением предстоящего и желанием действовать.</p></li>
+            <li><p><span class="hl">Обрести силы и энергию</span>, которые не зависят от погоды, того, сколько часов вы спали или фазы цикла, и оставаться в ресурсе даже в периоды высоких нагрузок.</p></li>
+            <li><p><span class="hl">Понять, о чём сигналит вам головная боль, запор и другие симптомы, и найти истинную причину, а не бороться со следствиями.</span> Мой системный подход для вас, если симптомы не проходят и всё время возвращаются, даже несмотря на то, что вы правильно питаетесь, пьёте воду, регулярно проходите свою норму шагов, уже обошли всех специалистов и сдали анализы.</p></li>
+            <li><p><span class="hl">Наладить отношения</span> и перестать наступать на одни и те же грабли с партнёром, детьми или родителями, увидев скрытые семейные сценарии.</p></li>
+            <li><p><span class="hl">Реализовать свой потенциал и выйти на новый уровень жизни и дохода</span>, не выгорая при этом. Понять, какие внутренние блоки мешают вам брать своё и получать желаемый доход.</p></li>
+            <li><p><span class="hl">Вставать утром с радостью и предвкушением предстоящего</span>, с желанием действовать и иметь чёткий план с пониманием «зачем» и «как».</p></li>
         </ol>
     </section>
 
     <!-- 4 КОДА (2 В РЯД) -->
     <section id="codes">
-        <h2>4 кода системного благополучия</h2>
-        <p class="subtitle">
-            Благополучие в жизни – это система, где всё связано со всем. Мой подход и авторский метод опирается на 4 кода благополучия.</p>
-        <p style="font-style: italic; max-width: 800px; margin: -10px auto 30px;">
-            «Здоровье — состояние полного физического, душевного и социального благополучия, а не только отсутствие болезней и физических дефектов» (Всемирная организация здравоохранения).</p>
+        <h2 style="text-align:center;">4 кода системного благополучия</h2>
+        <p class="subtitle" style="text-align:center; max-width:800px; margin-left:auto; margin-right:auto; font-size:1.25em;">Благополучие в жизни – это система, где всё связано со всем. Мой подход и авторский метод опирается на 4 кода благополучия.</p>
+        <p style="font-style: italic; max-width: 800px; margin: -10px auto 30px; text-align:center; font-size:1.15em;">«Здоровье — состояние полного физического, душевного и социального благополучия, а не только отсутствие болезней и физических дефектов» (Всемирная организация здравоохранения).</p>
         
         <div class="codes-grid">
             <div class="code-card" id="health">
                 <h3><a href="kod-zdorovya.html">Код здоровья</a></h3>
-                <p>Верните себе энергию и жизненную силу через системную работу с телом и психикой. Хроническая усталость, боли и лишний вес уходят, если работать с истинными причинами.</p>
+                <p>Верните себе энергию и жизненную силу через системную работу с телом и психикой. Хроническая усталость, боли и лишний вес уйдут, если работать с их истинными причинами.</p>
                 <div class="product-name">Мастер-группа «Второе дыхание»</div>
                 <div class="details">6 недель · 10-12 человек · личное сопровождение</div>
                 <p><a href="kod-zdorovya.html">Подробнее →</a></p>
@@ -1057,7 +1087,7 @@
             <div class="code-card" id="realization">
                 <h3><a href="kod-realizacii.html">Код реализации</a></h3>
                 <p>Инструменты, которые помогут прийти к финансовым целям и профессиональной реализации без выгорания и потери бюджетов на неэффективных решениях. Создайте стабильный доход на своей экспертизе и занимайтесь любимым делом в удовольствие.</p>
-                <div class="product-name">Интенсив-практикум «Прибыльная практика без выгорания»</div>
+                <div class="product-name">Курс «Прибыльная практика без выгорания»</div>
                 <div class="details">От хаоса к системе. Автоматизация · ИИ-агенты · сайт · трафик · масштабирование</div>
                 <p><a href="kod-realizacii.html">Подробнее →</a></p>
             </div>
@@ -1067,7 +1097,7 @@
                 <p>Совершите увлекательное исследование семейных сценариев, найдите опору в родовой истории, исцелите травмы предков и передайте детям здоровое наследие.</p>
                 <div class="product-name"><span class="keep">Закрытая группа «Резиденция&nbsp;Анисиной»</span></div>
                 <div class="details">Ежемесячные встречи с разбором ваших историй и реальной помощью.</div>
-                <div class="product-name">Авторская программа-исследование</strong> «Живое наследие»</div>
+                <div class="product-name">Авторская программа-исследование<br>«Живое наследие»</div>
                 <div class="details">Как самостоятельно найти информацию о предках в открытых источниках и собрать свою родовую историю.</div>
                 <p><a href="kod-semi-i-roda.html">Подробнее →</a></p>
             </div>
@@ -1075,11 +1105,8 @@
     </section>
 
     <!-- ДИАГНОСТИКА -->
-    <section id="diagnostic" class="diagnostic">
-        <h2>Бесплатная диагностика</h2>
-        <p>3 минуты, которые помогут понять корень вашей проблемы и выбрать правильный путь. Без обязательств и продаж – только ясность.</p>
-        <a href="zapis.html?source=consultation" class="btn-primary" data-al-start>Пройти диагностику</a>
-        <noscript><p>Для теста нужен включённый JavaScript. Запишитесь на консультацию по кнопке выше.</p></noscript>
+    <section id="diagnostic" class="diagnostic diagnostic--compact">
+        <noscript><p>Для теста нужен включённый JavaScript. <a href="zapis.html?source=consultation">Запишитесь на консультацию.</a></p></noscript>
         <div class="alq alq--light" data-al-quiz data-al-direct hidden></div>
     </section>
 
@@ -1087,11 +1114,11 @@
     <section class="perks" id="perks">
         <h2>Что полезного есть в Лаборатории<br>системного&nbsp;благополучия «Код&nbsp;Анисиной»</h2>
         <ul class="perks-list">
-            <li><strong>Диагностика (прямо на сайте):</strong> за 3 минуты покажет, на какой «код благополучия» стоит обратить внимание в первую очередь и с чего начать восстановление.</li>
-            <li><strong>Бесплатная диагностическая консультация со мной</strong> (около 30 минут), где мы вместе найдём подходящее решение в вашей конкретной ситуации.</li>
+            <li><strong>Диагностика (прямо на сайте):</strong> за 3 минуты покажет, на какой «код благополучия» стоит обратить внимание в первую очередь и как начать восстановление.</li>
+            <li><strong>Бесплатная диагностическая консультация со мной</strong> (около 30 минут), которая открывается после диагностики, и где мы вместе найдём подходящее решение в вашей конкретной ситуации.</li>
             <li><strong>Еженедельные прямые эфиры и разборы</strong> с возможностью задать вопрос и получить персональную рекомендацию. Информация и темы эфиров регулярно публикуются в телеграм-канале Лаборатории системного благополучия «Код&nbsp;Анисиной». Чтобы быть в курсе и не пропустить интересное, подписывайтесь на канал.</li>
             <li><strong>Бот «Ада»</strong> поможет определить ваш уровень адаптации и уже ждёт вас в телеграм-канале. Почему важно знать свой уровень адаптации и о научных открытиях, которые легли в основу этих разработок, я тоже рассказываю в телеграм-канале.</li>
-            <li><strong>Кейсы и реальные истории женщин,</strong> жизнь которых изменилась благодаря системному подходу.</li>
+            <li><strong>Кейсы и реальные истории женщин,</strong> жизнь которых изменилась благодаря системному подходу и которым удалось избавиться от мигрени или боли в спине, выйти из сложных отношений и абьюза, начать заниматься любимым делом и увеличить доход, наладить отношения с детьми-подростками, и многие другие истории.</li>
             <li><strong>Интересное и неочевидное</strong> и то, о чём обычно не рассказывают: записи некоторых эфиров выложены на канале.</li>
             <li><strong>Информация о предстоящих проектах,</strong> курсах, семинарах.</li>
         </ul>
@@ -1104,7 +1131,7 @@
     <!-- ОТЗЫВЫ -->
     <section class="testimonials" id="testimonials">
         <h2>Отзывы о методе, который помог собрать свой код благополучия и начать новую жизнь</h2>
-        <p class="section-lead">Оздоровление организма, гармония в отношениях, силы и энергия через психологию,  медицину и исследование семейных сценариев.</p>
+        <p class="section-lead">Восстановление здоровья, энергии и гармонии в отношениях через медицину, психологию и исследование семейных сценариев.</p>
         <div class="testimonial-grid">
             <figure class="testimonial-media">
                 <video controls preload="none" poster="otzyv-video-poster.jpg" playsinline>
@@ -1230,13 +1257,13 @@
   /* ---------- Содержание: меняйте тексты здесь ---------- */
   var CODES = [
     {
-      id: 'health', name: 'Код здоровья', short: 'здоровье', color: '#7FCBA5', deep: '#2c5f2d',
+      id: 'health', name: 'Код здоровья', short: 'здоровье', color: '#7FCBA5', deep: '#1F7A3D',
       mean: 'Сейчас ресурс уходит быстрее, чем восстанавливается: сил к вечеру мало, а отдых не даёт ощущения отдыха. С этим хорошо работать системно, через режим, нагрузку и восстановление, а не через силу воли.',
       offer: 'Мастер-группа «Второе дыхание»',
       offerText: '6 недель, группа 10–12 человек и личное сопровождение.'
     },
     {
-      id: 'relations', name: 'Код отношений', short: 'отношения', color: '#F19CB3', deep: '#7B5C99',
+      id: 'relations', name: 'Код отношений', short: 'отношения', color: '#F19CB3', deep: '#6B3FA0',
       mean: 'В близких отношениях накопилось напряжение: несказанное, повторяющееся или одинокое. Обычно за этим стоит один и тот же сценарий, и его можно рассмотреть и с ним поработать.',
       offer: '10-дневное сопровождение',
       offerText: '10 дней: две встречи и работа между ними.'
@@ -1629,13 +1656,13 @@
             transition: opacity 0.3s ease, transform 0.3s ease;
         }
         .cookie-banner.is-visible { opacity: 1; transform: none; }
-        .cookie-banner p { margin: 0; max-width: 640px; color: #333; font-family: Georgia, 'Times New Roman', serif; font-size: 0.95em; line-height: 1.5; text-align: left; }
+        .cookie-banner p { margin: 0; max-width: 640px; color: #333; font-family: 'Manrope', 'Arial', sans-serif; font-size: 0.95em; line-height: 1.5; text-align: left; }
         .cookie-banner__actions { display: flex; flex: none; gap: 12px; }
         .cookie-banner__btn { flex: none; padding: 10px 26px; border-radius: 5px; font: inherit; font-weight: bold; cursor: pointer; }
         .cookie-banner__btn--ghost { border: 1px solid #999; background: #fff; color: #333; }
         .cookie-banner__btn--ghost:hover { background: #e6e6e6; }
-        .cookie-banner__btn--solid { border: 1px solid #2c5f2d; background: #2c5f2d; color: #fff; }
-        .cookie-banner__btn--solid:hover { background: #1e4220; }
+        .cookie-banner__btn--solid { border: 1px solid #1F7A3D; background: #1F7A3D; color: #fff; }
+        .cookie-banner__btn--solid:hover { background: #14532D; }
         @media (max-width: 640px) {
             .cookie-banner { flex-direction: column; align-items: stretch; text-align: center; }
             .cookie-banner__actions { justify-content: stretch; }
